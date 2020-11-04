@@ -1,0 +1,14 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html, body, #gis {
+    height: 100%;
+    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+    background: #e93434;
+    color: #ffffff;
+}

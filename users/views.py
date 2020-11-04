@@ -156,13 +156,20 @@ def uploadkesehatan(request):
 class KesehatanAttrUpdateView(UpdateView):
     model = Kesehatan
     fields = [
-        'namrjl',
-        'lcode',
-        'spcrjl',
-        'starjl',
-        'utkrjl',
-        'wlyrjl',
-        'shp_length',
+        'namobj',
+        'alamat',
+        'remark',
+        'jml_dktr',
+        'jml_prwt',
+        'jml_pasien',
+        'jml_ruang',
+        'fasilitas',
+        'kond_bgnn',
+        'tahun',
+        'anggaran',
+        'sumb_dana',
+        'kontraktor',
+        'surv_time',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -171,3 +178,130 @@ class KesehatanDeleteView(DeleteView):
     model = Kesehatan
     template_name = "maps/kesehatan_delete.html"
     success_url = "/kesehatan/"
+
+
+# Drainase-->
+# List-->
+def DrainaseListView(request):
+    drainase = Drainase.objects.all()
+    return render(request,'maps/drainase_list.html',{'drainase':drainase})
+# Upload-->
+def uploaddrainase(request):
+    drainaseform = DrainaseForm()
+    if request.method == "POST":
+        drainaseform = DrainaseForm(request.POST)
+        if drainaseform.is_valid():
+            print(drainaseform.cleaned_data)
+            Drainase.objects.create(**drainaseform.cleaned_data)
+            return redirect('/')
+        else:
+            print(drainaseform.errors)
+    context = {
+            "form": drainaseform
+        }
+    return render(request,'upload/upload_Drainase.html', context)
+# Update Attribute-->
+class DrainaseAttrUpdateView(UpdateView):
+    model = Drainase
+    fields = [
+        'lcode',
+        'rpru',
+        'kemiringan',
+        'panjang_m',
+        'kdlmn_m',
+        'kondisi',
+        'tahun',
+        'anggaran',
+        'kontraktor',
+        'surv_time',
+    ]
+    template_name_suffix = '_update_form'
+    success_url = '/'
+# Delete-->
+class DrainaseDeleteView(DeleteView):
+    model = Drainase
+    template_name = "maps/drainase_delete.html"
+    success_url = "/drainase/"
+
+
+# Pendidikan-->
+# List-->
+def PendidikanListView(request):
+    pendidikan = Pendidikan.objects.all()
+    return render(request,'maps/pendidikan_list.html',{'pendidikan':pendidikan})
+# Upload-->
+def uploadpendidikan(request):
+    pendidikanform = PendidikanForm()
+    if request.method == "POST":
+        pendidikanform = PendidikanForm(request.POST)
+        if pendidikanform.is_valid():
+            print(pendidikanform.cleaned_data)
+            Pendidikan.objects.create(**pendidikanform.cleaned_data)
+            return redirect('/')
+        else:
+            print(pendidikanform.errors)
+    context = {
+            "form": pendidikanform
+        }
+    return render(request,'upload/upload_Pendidikan.html', context)
+# Update Attribute-->
+class PendidikanAttrUpdateView(UpdateView):
+    model = Pendidikan
+    fields = [
+        'namobj',
+        'remark',
+        'alamat',
+        'jml_kelas',
+        'jml_guru',
+        'jml_siswa',
+        'fasilitas',
+        'thn_bangun',
+        'anggaran',
+        'surveyor',
+        'surv_time',
+    ]
+    template_name_suffix = '_update_form'
+    success_url = '/'
+# Delete-->
+class PendidikanDeleteView(DeleteView):
+    model = Pendidikan
+    template_name = "maps/pendidikan_delete.html"
+    success_url = "/pendidikan/"
+
+
+# Administrasi Kabupaten Sidrap-->
+# List-->
+def Kab_SidrapListView(request):
+    kab_sidrap = Kab_Sidrap.objects.all()
+    return render(request,'maps/kab_sidrap_list.html',{'kab_sidrap':kab_sidrap})
+# Upload-->
+def uploadkab_sidrap(request):
+    kab_sidrapform = Kab_SidrapForm()
+    if request.method == "POST":
+        kab_sidrapform = Kab_SidrapForm(request.POST)
+        if kab_sidrapform.is_valid():
+            print(kab_sidrapform.cleaned_data)
+            Kab_Sidrap.objects.create(**kab_sidrapform.cleaned_data)
+            return redirect('/')
+        else:
+            print(kab_sidrapform.errors)
+    context = {
+            "form": kab_sidrapform
+        }
+    return render(request,'upload/upload_Kab_Sidrap.html', context)
+# Update Attribute-->
+class Kab_SidrapAttrUpdateView(UpdateView):
+    model = Kab_Sidrap
+    fields = [
+        'Provinsi',
+        'Kecamatan',
+        'Desa',
+        'Kabupaten',
+    ]
+    template_name_suffix = '_update_form'
+    success_url = '/'
+# Delete-->
+class Kab_SidrapDeleteView(DeleteView):
+    model = Kab_Sidrap
+    template_name = "maps/kab_sidrap_delete.html"
+    success_url = "/pkab_sidrap/"

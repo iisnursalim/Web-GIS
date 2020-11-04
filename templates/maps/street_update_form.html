@@ -1,0 +1,100 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{ form.media }}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Update attribute | WebGis Geofisika</title>
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+	<script src="{% static 'js/mapwidget.js' %}"></script>
+</head>
+
+
+<body>
+{% include 'snippets/navbar.html' %}
+
+{% if user.is_authenticated %}	
+<div class="container jumbotron mt-5">
+	<h2 class="display-7">Update {{object.namrjl}} Attribute</h2>
+	<hr class="my-3">
+
+	<div class="form-group">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="field">
+				<label class="label">Street Name</label>
+				<div class="control">
+					{% render_field form.namrjl class="form-control" placeholder="Insert Name" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Layer Code</label>
+				<div class="control">
+					{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Road Specifications</label>
+				<div class="control">
+					{% render_field form.spcrjl class="form-control" placeholder="Select Road Specifications" %}
+				</div>
+			</div>
+			<br>
+            <div class="field">
+				<label class="label">Road Status</label>
+				<div class="control">
+					{% render_field form.starjl class="form-control" placeholder="Select Road Status" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Road use</label>
+				<div class="control">
+					{% render_field form.utkrjl class="form-control" placeholder="Select Road use" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Road Service Area</label>
+				<div class="control">
+					{% render_field form.wlyrjl class="form-control" placeholder="Select Road Service Area" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Length (meter)</label>
+				<div class="control">
+					{% render_field form.shp_length class="form-control" placeholder="Insert Length" %}
+				</div>
+			</div>
+			<br>
+			<button style="margin-right: 20px;" type="submit" class="btn btn-success">Save</button>
+			<a href="{% url 'list_street' %}">
+                <input style="width: 50px;" class="btn btn-danger" type="button" value="No">
+            </a>
+		</form>
+	</div>
+</div>
+{% else %}
+<div class="container jumbotron mt-5">
+    <h2 class="display-4">You must login first!!!</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+</div>
+{% endif %}
+
+<script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+<script src="{% static 'vendor/popper/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load leaflet_tags %}
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+
+	{% leaflet_js %}
+	{% leaflet_css %}
+
+	<title>{% block Title %}{% endblock Title %}</title>
+
+	<!-- Style -->
+	<style type="text/css">
+		#gis {height: 90%; position: fixed; width: 100%;}
+	</style>
+	{% block Leaflet_css %}{% endblock Leaflet_css %}
+	{% include 'snippets/vendor.html' %}
+</head>
+<body>
+{% include 'snippets/navbar.html' %}
+<!-- Contents -->
+	<div class="col-md-8 fixed-top">
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-{{ message.tags }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+{% block Contents %}{% endblock Contents %}
+<!-- Javascript -->
+	<script src="{% static 'vendor/popper/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

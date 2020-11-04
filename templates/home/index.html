@@ -1,0 +1,107 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% load leaflet_tags %}
+
+{% block Title %}
+	WebGis Geofisika
+{% endblock Title %}
+
+{% block Leaflet_css %}
+
+{% endblock Leaflet_css %}
+
+{% block Heading %}
+
+{% endblock Heading %}
+
+{% block Contents %}
+	<script> 
+		function map_layers(map,option){
+		// Add base map tiles from OpenstreetMap
+			var street = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+				maxZoom: 20,
+				id: 'mapbox/streets-v11',
+				tileSize: 512,
+				zoomOffset: -1,
+				accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
+			});
+			street.addTo(map);
+			var satellite = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+				maxZoom: 20,
+				id: 'mapbox/satellite-streets-v11',
+				tileSize: 512,
+				zoomOffset: -1,
+				accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NDg1bDA1cjYzM280NHJ5NzlvNDMifQ.d6e-nNyBDtmQCVwVNivz7A'
+			});
+		
+		// Add data map from database with using L.GeoJSON.AJAX plugin.
+			var EduBuild = new L.GeoJSON.AJAX("{% url 'maps:data_edubuild' %}",{
+				onEachFeature: function(feature, layer){
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Function</td> <td>: '+feature.properties.fgdpdk.toString()+'</td></tr> <tr><td>Types of education</td> <td>: '+feature.properties.jnspdk.toString()+'</td></tr></table>');
+				},
+			});
+			var Street = new L.GeoJSON.AJAX("{% url 'maps:data_street' %}",{
+				style: function colors(feature){
+					switch (feature.properties.spcrjl) {
+						case 'Freeway':
+							return{
+								color: 'white'
+							};
+						break;
+						case 'Highway':
+							return{
+								color: 'green'
+							};
+						break;
+						case 'Moderate road':
+							return{
+								color: 'yellow'
+							};
+						break;
+						case 'Small road':
+							return{
+								color: 'red'
+							};
+						break;
+						case 'Other':
+							return{
+								color: 'orange'
+							};
+						break;
+					}
+				},
+				onEachFeature: function(feature, layer){
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namrjl.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Road Specifications</td> <td>: '+feature.properties.spcrjl.toString()+'</td></tr> <tr><td>Road Status</td> <td>: '+feature.properties.starjl.toString()+'</td></tr> <tr><td>Road use</td> <td>: '+feature.properties.utkrjl.toString()+'</td></tr> <tr><td>Road Service Area</td> <td>: '+feature.properties.wlyrjl.toString()+'</td></tr> <tr><td>Length (meter)</td> <td>: '+feature.properties.shp_length.toString()+' m</td></tr></table></div>');
+				},
+			});
+			var Administrasi = new L.GeoJSON.AJAX("{% url 'maps:data_administrasi' %}",{
+				onEachFeature: function(feature, layer){
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>District</td> <td>: '+feature.properties.wadmkk.toString()+'</td></tr> <tr><td>Province</td> <td>: '+feature.properties.wadmpr.toString()+'</td></tr> <tr><td>District Capital</td> <td>: '+feature.properties.wiadkk.toString()+'</td></tr> <tr><td>Area (Hectares)</td> <td>: '+feature.properties.shp_area.toString()+' ha</td></tr></table>');
+				},
+			});
+			
+
+		// Add control layers
+			var baseLayers = {
+				"Streets": street,
+				"Satellite": satellite
+			}
+			var overlayMaps = {
+				"Layers": {
+					"Building": EduBuild,
+					"Streets": Street,
+					"Administrasi": Administrasi
+				}
+			};
+			L.control.groupedLayers(baseLayers, overlayMaps).addTo(map);
+		}
+	</script>
+	
+	{% leaflet_map "gis" callback="window.map_layers" %}
+{% endblock Contents %}
+
+
+
+

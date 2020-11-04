@@ -140,3 +140,7 @@ LEAFLET_CONFIG = {
     'ATTRIBUTION_PREFIX': 'Universitas Hasanuddin',
     
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'maps:home-maps'

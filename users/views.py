@@ -82,7 +82,7 @@ class JalanAttrUpdateView(UpdateView):
 class JalanDeleteView(DeleteView):
     model = Jalan
     template_name = "maps/jalan_delete.html"
-    success_url = "/street/"
+    success_url = "/jalan/"
 
 
 # Jembatan-->
@@ -304,4 +304,4 @@ class Kab_SidrapAttrUpdateView(UpdateView):
 class Kab_SidrapDeleteView(DeleteView):
     model = Kab_Sidrap
     template_name = "maps/kab_sidrap_delete.html"
-    success_url = "/pkab_sidrap/"
+    success_url = "/kab_sidrap/"

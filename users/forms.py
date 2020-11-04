@@ -63,7 +63,7 @@ class JalanForm(forms.Form):
     tahun = forms.IntegerField()
     anggaran = forms.BigIntegerField()
     tipe_ruas = forms.CharField(max_length=100)
-    geom = forms.gis.LineStringField (widget=LineStringWidget(attrs={
+    geom = forms.gis.LineStringField(widget=LineStringWidget(attrs={
         'id': 'gis',
         'style': 'width: 100%;'
     }))
@@ -121,7 +121,7 @@ class DrainaseForm(forms.Form):
     anggaran = forms.BigIntegerField()
     kontraktor = forms.CharField(max_length=50)
     surv_time = forms.DateField()
-    geom = forms.gis.LineStringField (widget=LineStringWidget(attrs={
+    geom = forms.gis.LineStringField(widget=LineStringWidget(attrs={
         'id': 'gis',
         'style': 'width: 100%;'
     }))

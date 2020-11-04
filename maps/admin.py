@@ -1,30 +1,29 @@
 from django.contrib import admin
-from .models import Jalan, Jembatan, Kesehatan, Drainase, Kab_Sidrap
+from .models import Jalan, Jembatan, Kesehatan, Drainase, Pendidikan, Kab_Sidrap
 from leaflet.admin import LeafletGeoAdmin
-
 # Register your models here.
-class JalanAdm(LeafletGeoAdmin):
-    list_display = ('Surveyor', 'Waktu_Survey')
 
-admin.site.register(Jalan, JalanAdm)
+class JalanAdmin(LeafletGeoAdmin):
+	list_display = ('number','name')
 
-class JembatanAdm(LeafletGeoAdmin):
-    list_display = ('Surveyor', 'Tanggal_Survey')
+class JembatanAdmin(LeafletGeoAdmin):
+	list_display = ('nama','tipe_jem')
 
-admin.site.register(Jembatan, JembatanAdm)
+class KesehatanAdmin(LeafletGeoAdmin):
+	list_display = ('namobj','alamat')
 
-class KesehatanAdm(LeafletGeoAdmin):
-    list_display = ('Nama_Fasilitas_Kesehatan', 'Alamat')
+class DrainaseAdmin(LeafletGeoAdmin):
+	list_display = ('lcode','panjang_m')
 
-admin.site.register(Kesehatan, KesehatanAdm)
+class PendidikanAdmin(LeafletGeoAdmin):
+	list_display = ('namobj','alamat')
 
-class DrainaseAdm(LeafletGeoAdmin):
-    list_display = ('Kode_Drainase', 'Tanggal_Survey')
+class Kab_SidrapAdmin(LeafletGeoAdmin):
+	list_display = ('Desa','Kecamatan')
 
-admin.site.register(Drainase, DrainaseAdm)
-
-class Kab_Sidrap_Adm(LeafletGeoAdmin):
-    list_display = ('Desa', 'Kecamatan')
-
-admin.site.register(Kab_Sidrap, Kab_Sidrap_Adm)
-
+admin.site.register(Jalan, JalanAdmin)
+admin.site.register(Jembatan, JembatanAdmin)
+admin.site.register(Kesehatan, KesehatanAdmin)
+admin.site.register(Drainase, DrainaseAdmin)
+admin.site.register(Pendidikan, PendidikanAdmin)
+admin.site.register(Kab_Sidrap, Kab_SidrapAdmin)

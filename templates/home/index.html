@@ -3,7 +3,7 @@
 {% load leaflet_tags %}
 
 {% block Title %}
-	WebGis Geofisika
+	Web-GIS Sarana dan Prasarana Wilayah Kabupaten Sidrap
 {% endblock Title %}
 
 {% block Leaflet_css %}
@@ -37,12 +37,8 @@
 			});
 		
 		// Add data map from database with using L.GeoJSON.AJAX plugin.
-			var EduBuild = new L.GeoJSON.AJAX("{% url 'maps:data_edubuild' %}",{
-				onEachFeature: function(feature, layer){
-					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Function</td> <td>: '+feature.properties.fgdpdk.toString()+'</td></tr> <tr><td>Types of education</td> <td>: '+feature.properties.jnspdk.toString()+'</td></tr></table>');
-				},
-			});
-			var Street = new L.GeoJSON.AJAX("{% url 'maps:data_street' %}",{
+
+			var Jalan = new L.GeoJSON.AJAX("{% url 'maps:data_jalan' %}",{
 				style: function colors(feature){
 					switch (feature.properties.spcrjl) {
 						case 'Freeway':
@@ -76,12 +72,36 @@
 					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namrjl.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Road Specifications</td> <td>: '+feature.properties.spcrjl.toString()+'</td></tr> <tr><td>Road Status</td> <td>: '+feature.properties.starjl.toString()+'</td></tr> <tr><td>Road use</td> <td>: '+feature.properties.utkrjl.toString()+'</td></tr> <tr><td>Road Service Area</td> <td>: '+feature.properties.wlyrjl.toString()+'</td></tr> <tr><td>Length (meter)</td> <td>: '+feature.properties.shp_length.toString()+' m</td></tr></table></div>');
 				},
 			});
-			var Administrasi = new L.GeoJSON.AJAX("{% url 'maps:data_administrasi' %}",{
+
+			var Jembatan = new L.GeoJSON.AJAX("{% url 'maps:data_jembatan' %}",{
+				onEachFeature: function(feature, layer){
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Function</td> <td>: '+feature.properties.fgdpdk.toString()+'</td></tr> <tr><td>Types of education</td> <td>: '+feature.properties.jnspdk.toString()+'</td></tr></table>');
+				},
+			});
+
+			var Kesehatan = new L.GeoJSON.AJAX("{% url 'maps:data_kesehatan' %}",{
 				onEachFeature: function(feature, layer){
 					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>District</td> <td>: '+feature.properties.wadmkk.toString()+'</td></tr> <tr><td>Province</td> <td>: '+feature.properties.wadmpr.toString()+'</td></tr> <tr><td>District Capital</td> <td>: '+feature.properties.wiadkk.toString()+'</td></tr> <tr><td>Area (Hectares)</td> <td>: '+feature.properties.shp_area.toString()+' ha</td></tr></table>');
 				},
 			});
+
+			var Drainase = new L.GeoJSON.AJAX("{% url 'maps:data_drainase' %}",{
+				onEachFeature: function(feature, layer){
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Function</td> <td>: '+feature.properties.fgdpdk.toString()+'</td></tr> <tr><td>Types of education</td> <td>: '+feature.properties.jnspdk.toString()+'</td></tr></table>');
+				},
+			});
 			
+			var Pendidikan = new L.GeoJSON.AJAX("{% url 'maps:data_pendidikan' %}",{
+				onEachFeature: function(feature, layer){
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Function</td> <td>: '+feature.properties.fgdpdk.toString()+'</td></tr> <tr><td>Types of education</td> <td>: '+feature.properties.jnspdk.toString()+'</td></tr></table>');
+				},
+			});
+
+			var Kab_Sidrap = new L.GeoJSON.AJAX("{% url 'maps:data_kab_sidrap' %}",{
+				onEachFeature: function(feature, layer){
+					layer.bindPopup('<table style="width:100%"> <tr><td>Name</td> <td>: '+feature.properties.namobj.toString()+'</td></tr> <tr><td>Note</td> <td>: '+feature.properties.remark.toString()+'</td></tr> <tr><td>Layer Code</td> <td>: '+feature.properties.lcode.toString()+'</td></tr> <tr><td>Function</td> <td>: '+feature.properties.fgdpdk.toString()+'</td></tr> <tr><td>Types of education</td> <td>: '+feature.properties.jnspdk.toString()+'</td></tr></table>');
+				},
+			});
 
 		// Add control layers
 			var baseLayers = {
@@ -90,9 +110,12 @@
 			}
 			var overlayMaps = {
 				"Layers": {
-					"Building": EduBuild,
-					"Streets": Street,
-					"Administrasi": Administrasi
+					"Jalan": Jalan,
+					"Jembatan": Jembatan,
+					"Kesehatan": Kesehatan
+					"Drainase": Drainase,
+					"Pendidikan": Pendidikan,
+					"Kab_Sidrap": Kab_Sidrap					
 				}
 			};
 			L.control.groupedLayers(baseLayers, overlayMaps).addTo(map);

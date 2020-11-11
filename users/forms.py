@@ -34,7 +34,7 @@ class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseOsmWidget):
             'floppyforms/js/MapWidget.js',
         )
 
-class MultiLineStringWidget(forms.gis.MultiLineStringWidget, forms.gis.BaseOsmWidget):
+class LineStringWidget(forms.gis.LineStringWidget, forms.gis.BaseOsmWidget):
     map_width = 1000
     map_height = 500
     template_name = 'snippets/osm.html'
@@ -51,8 +51,8 @@ class JalanForm(forms.Form):
     surv_time = forms.DateField()
     number = forms.IntegerField()
     name = forms.CharField(max_length=250)
-    length_km = forms.BigIntegerField()
-    width_m = forms.BigIntegerField()
+    length_km = forms.IntegerField()
+    width_m = forms.IntegerField()
     tpp = forms.CharField(max_length=250)
     tpu = forms.CharField(max_length=250)
     lhr = forms.IntegerField()
@@ -61,7 +61,7 @@ class JalanForm(forms.Form):
     kondisi = forms.CharField(max_length=100)
     hambatan = forms.CharField(max_length=100)
     tahun = forms.IntegerField()
-    anggaran = forms.BigIntegerField()
+    anggaran = forms.IntegerField()
     tipe_ruas = forms.CharField(max_length=100)
     geom = forms.gis.LineStringField(widget=LineStringWidget(attrs={
         'id': 'gis',
@@ -74,15 +74,15 @@ class JembatanForm(forms.Form):
     surv_date = forms.DateField()
     nama = forms.CharField(max_length=100)
     pal_km = forms.IntegerField()
-    panjang_m = forms.BigIntegerField()
-    lebar_m = forms.BigIntegerField()
+    panjang_m = forms.IntegerField()
+    lebar_m = forms.IntegerField()
     bentang = forms.IntegerField()
     tipe_jem = forms.CharField(max_length=100)
     penyebrang = forms.CharField(max_length=100)
     bhn_konstr = forms.CharField(max_length=50)
     kondisi = forms.CharField(max_length=100)
     tahun = forms.IntegerField()
-    anggaran = forms.BigIntegerField()
+    anggaran = forms.IntegerField()
     geom = forms.gis.PointField(widget=PointWidget(attrs={
         'id': 'gis',
         'style': 'widformsth: 100%;'
@@ -100,7 +100,7 @@ class KesehatanForm(forms.Form):
     fasilitas = forms.CharField(max_length=250)
     kond_bgnn = forms.CharField(max_length=100)
     tahun = forms.IntegerField()
-    anggaran = forms.BigIntegerField()
+    anggaran = forms.IntegerField()
     sumb_dana = forms.CharField(max_length=50)
     kontraktor = forms.CharField(max_length=100)
     surv_time = forms.DateField()
@@ -118,7 +118,7 @@ class DrainaseForm(forms.Form):
     kdlmn_m = forms.IntegerField()
     kondisi = forms.CharField(max_length=50)
     tahun = forms.IntegerField()
-    anggaran = forms.BigIntegerField()
+    anggaran = forms.IntegerField()
     kontraktor = forms.CharField(max_length=50)
     surv_time = forms.DateField()
     geom = forms.gis.LineStringField(widget=LineStringWidget(attrs={
@@ -136,7 +136,7 @@ class PendidikanForm(forms.Form):
     jml_siswa = forms.IntegerField()
     fasilitas = forms.CharField(max_length=250)
     thn_bangun = forms.IntegerField()
-    anggaran = forms.BigIntegerField()
+    anggaran = forms.IntegerField()
     surveyor = forms.CharField(max_length=100)
     surv_time = forms.DateField()
     geom = forms.gis.PointField(widget=PointWidget(attrs={

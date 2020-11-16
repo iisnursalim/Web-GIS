@@ -12,7 +12,7 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2'] 
 
 ##------ CUSTOM WIDGET ------##
-class PointWidget(forms.gis.PointWidget, forms.gis.BaseOsmWidget):
+class MultiPointWidget(forms.gis.MultiPointWidget, forms.gis.BaseOsmWidget):
     map_width = 1000
     map_height = 500
     template_name = 'snippets/osm.html'
@@ -34,7 +34,7 @@ class MultiPolygonWidget(forms.gis.MultiPolygonWidget, forms.gis.BaseOsmWidget):
             'floppyforms/js/MapWidget.js',
         )
 
-class LineStringWidget(forms.gis.LineStringWidget, forms.gis.BaseOsmWidget):
+class MultiLineStringWidget(forms.gis.MultiLineStringWidget, forms.gis.BaseOsmWidget):
     map_width = 1000
     map_height = 500
     template_name = 'snippets/osm.html'
@@ -47,109 +47,132 @@ class LineStringWidget(forms.gis.LineStringWidget, forms.gis.BaseOsmWidget):
 
 ## ------ Jalan-------##
 class JalanForm(forms.Form):
-    surveyor = forms.CharField(max_length=250)
-    surv_time = forms.DateField()
-    number = forms.IntegerField()
-    name = forms.CharField(max_length=250)
-    length_km = forms.IntegerField()
-    width_m = forms.IntegerField()
-    tpp = forms.CharField(max_length=250)
-    tpu = forms.CharField(max_length=250)
-    lhr = forms.IntegerField()
-    status = forms.CharField(max_length=100)
-    surf_type = forms.CharField(max_length=100)
-    kondisi = forms.CharField(max_length=100)
-    hambatan = forms.CharField(max_length=100)
-    tahun = forms.IntegerField()
-    anggaran = forms.IntegerField()
-    tipe_ruas = forms.CharField(max_length=100)
-    geom = forms.gis.LineStringField(widget=LineStringWidget(attrs={
+    kelas_jln = forms.CharField(max_length=250)
+    panjang = forms.FloatField()
+    no_ruas = forms.CharField(max_length=250)
+    nama_jalan = forms.CharField(max_length=250)
+    tipe_perm = forms.CharField(max_length=250)
+    kond_jalan = forms.CharField(max_length=250)
+    lebar = forms.FloatField()
+    geom = forms.gis.MultiLineStringField(widget=MultiLineStringWidget(attrs={
         'id': 'gis',
         'style': 'width: 100%;'
     }))
 
+
+## ------ Jalan Point -------##
+class JalanPointForm(forms.Form):
+    surveyor = forms.CharField(max_length=254)
+    waktu_surv = forms.DateField()
+    nomor_ruas = forms.CharField(max_length=254)
+    nama_jalan = forms.CharField(max_length=254)
+    panjang = forms.CharField(max_length=254)
+    lebar = forms.CharField(max_length=254)
+    tpp = forms.CharField(max_length=254)
+    tpu = forms.CharField(max_length=254)
+    lhr = forms.CharField(max_length=254)
+    klasifikas = forms.CharField(max_length=254)
+    status_adm = forms.CharField(max_length=254)
+    tipe_permu = forms.CharField(max_length=254)
+    kondisi_ja = forms.CharField(max_length=254)
+    hambatan = forms.CharField(max_length=254)
+    tahun = forms.CharField(max_length=254)
+    anggaran = forms.CharField(max_length=254)
+    geom = forms.gis.MultiPointField(widget=MultiPointWidget(attrs={
+        'id': 'gis',
+        'style': 'widformsth: 100%;'
+    }))
+
 ##------ Jembatan -------##
 class JembatanForm(forms.Form):
-    surveyor = forms.CharField(max_length=100)
-    surv_date = forms.DateField()
-    nama = forms.CharField(max_length=100)
-    pal_km = forms.IntegerField()
-    panjang_m = forms.IntegerField()
-    lebar_m = forms.IntegerField()
-    bentang = forms.IntegerField()
-    tipe_jem = forms.CharField(max_length=100)
-    penyebrang = forms.CharField(max_length=100)
-    bhn_konstr = forms.CharField(max_length=50)
-    kondisi = forms.CharField(max_length=100)
-    tahun = forms.IntegerField()
-    anggaran = forms.IntegerField()
-    geom = forms.gis.PointField(widget=PointWidget(attrs={
+    surveyor = forms.CharField(max_length=254)
+    waktu_surv = forms.DateField()
+    nama = forms.CharField(max_length=254)
+    no_kode = forms.CharField(max_length=254)
+    pal_km = forms.CharField(max_length=254)
+    tipe_sebra = forms.CharField(max_length=254)
+    jenis_jemb = forms.CharField(max_length=254)
+    panjang = forms.FloatField()
+    lebar = forms.FloatField()
+    jml_bentan = forms.FloatField()
+    kondisi = forms.CharField(max_length=254)
+    tahun = forms.CharField(max_length=254)
+    anggaran = forms.FloatField()
+    sumber_dan = forms.CharField(max_length=254)
+    geom = forms.gis.MultiPointField(widget=MultiPointWidget(attrs={
         'id': 'gis',
         'style': 'widformsth: 100%;'
     }))
 
 ##------ Fasilitas Kesehatan -------##
 class KesehatanForm(forms.Form):
-    namobj = forms.CharField(max_length=250)
-    alamat = forms.CharField(max_length=250)
-    remark = forms.CharField(max_length=250)
-    jml_dktr = forms.IntegerField()
-    jml_prwt = forms.IntegerField()
-    jml_pasien = forms.IntegerField()
-    jml_ruang = forms.IntegerField()
-    fasilitas = forms.CharField(max_length=250)
-    kond_bgnn = forms.CharField(max_length=100)
-    tahun = forms.IntegerField()
-    anggaran = forms.IntegerField()
-    sumb_dana = forms.CharField(max_length=50)
-    kontraktor = forms.CharField(max_length=100)
-    surv_time = forms.DateField()
-    geom = forms.gis.PointField(widget=PointWidget(attrs={
+    surveyor = forms.CharField(max_length=254)
+    waktu_surv = forms.DateField()
+    nama = forms.CharField(max_length=254)
+    alamat = forms.CharField(max_length=254)
+    jenis = forms.CharField(max_length=254)
+    jml_dokter = forms.CharField(max_length=254)
+    jml_perawa = forms.CharField(max_length=254)
+    jml_dosen = forms.CharField(max_length=254)
+    jml_pasien = forms.CharField(max_length=254)
+    fasilitas = forms.CharField(max_length=254)
+    kondisi = forms.CharField(max_length=254)
+    tahun_diba = forms.CharField(max_length=254)
+    anggaran = forms.CharField(max_length=254)
+    sumber_dan = forms.CharField(max_length=254)
+    geom = forms.gis.MultiPointField(widget=MultiPointWidget(attrs={
         'id': 'gis',
         'style': 'widformsth: 100%;'
     }))
 
 ##------ Drainase -------##
 class DrainaseForm(forms.Form):
-    lcode = forms.CharField(max_length=50)
-    rpru = forms.CharField(max_length=100)
-    kemiringan = forms.IntegerField()
-    panjang_m = forms.IntegerField()
-    kdlmn_m = forms.IntegerField()
-    kondisi = forms.CharField(max_length=50)
-    tahun = forms.IntegerField()
-    anggaran = forms.IntegerField()
-    kontraktor = forms.CharField(max_length=50)
-    surv_time = forms.DateField()
-    geom = forms.gis.LineStringField(widget=LineStringWidget(attrs={
+    surveyor = forms.CharField(max_length=254)
+    waktu_surv = forms.DateField()
+    no_kode = forms.CharField(max_length=254)
+    rpru = forms.CharField(max_length=254)
+    kemiringan = forms.CharField(max_length=254)
+    pjg_salura = forms.FloatField()
+    lebar_salu = forms.FloatField()
+    kedalaman = forms.FloatField()
+    kondisi = forms.CharField(max_length=254)
+    tahun = forms.CharField(max_length=254)
+    anggaran = forms.FloatField()
+    sumber_dan = forms.CharField(max_length=254)
+    geom = forms.gis.MultiLineStringField(widget=MultiLineStringWidget(attrs={
         'id': 'gis',
         'style': 'width: 100%;'
     }))
 
 ##------ Pendidikan -------##
 class PendidikanForm(forms.Form):
-    namobj = forms.CharField(max_length=250)
-    remark = forms.CharField(max_length=250)
-    alamat = forms.CharField(max_length=250)
-    jml_kelas = forms.IntegerField()
-    jml_guru = forms.IntegerField()
-    jml_siswa = forms.IntegerField()
-    fasilitas = forms.CharField(max_length=250)
-    thn_bangun = forms.IntegerField()
-    anggaran = forms.IntegerField()
-    surveyor = forms.CharField(max_length=100)
-    surv_time = forms.DateField()
-    geom = forms.gis.PointField(widget=PointWidget(attrs={
+    surveyor = forms.CharField(max_length=254)
+    waktu_surv = forms.DateField()
+    nama = forms.CharField(max_length=254)
+    alamat = forms.CharField(max_length=254)
+    jenjang = forms.CharField(max_length=254)
+    jml_kelas = forms.FloatField()
+    jml_guru = forms.FloatField()
+    jml_siswa = forms.FloatField()
+    fasilitas = forms.FloatField()
+    tahun = forms.CharField(max_length=254)
+    anggaran = forms.FloatField()
+    geom = forms.gis.MultiPointField(widget=MultiPointWidget(attrs={
         'id': 'gis',
         'style': 'widformsth: 100%;'
     }))
 
 ##------ ADMINISTRASI KAB SIDRAP-------##
 class Kab_SidrapForm(forms.Form):
-    Provinsi = forms.CharField(max_length=40)
-    Kecamatan = forms.CharField(max_length=40)
-    Desa = forms.CharField(max_length=40)
-    Kabupaten = forms.CharField(max_length=50)
+    provinsi = forms.CharField(max_length=40)
+    kecamatan = forms.CharField(max_length=40)
+    desa = forms.CharField(max_length=40)
+    kode2010 = forms.CharField(max_length=10)
+    provno = forms.CharField(max_length=2)
+    kabkotno = forms.CharField(max_length=2)
+    kecno = forms.CharField(max_length=3)
+    desano = forms.CharField(max_length=3)
+    kabkot = forms.CharField(max_length=50)
     geom = forms.gis.MultiPolygonField(widget=MultiPolygonWidget(attrs={
         'id': 'gis',
         'style': 'width: 100%;'

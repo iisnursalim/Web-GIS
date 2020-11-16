@@ -8,13 +8,13 @@ from django.utils.text import slugify
 ###  Jalan  ###
 
 class Jalan(models.Model):
-    kelas_jln = models.CharField(max_length=250)
-    panjang = models.FloatField()
-    no_ruas = models.CharField(max_length=250)
-    nama_jalan = models.CharField(max_length=250)
-    tipe_perm = models.CharField(max_length=250)
-    kond_jalan = models.CharField(max_length=250)
-    lebar = models.FloatField()
+    kelas_jln = models.CharField(max_length=250, default='')
+    panjang = models.FloatField(default='')
+    no_ruas = models.CharField(max_length=250, default='')
+    nama_jalan = models.CharField(max_length=250, default='')
+    tipe_perm = models.CharField(max_length=250, default='')
+    kond_jalan = models.CharField(max_length=250, default='')
+    lebar = models.FloatField(default='')
     geom = models.MultiLineStringField(srid=4326)
 
     def __unicode__(self):
@@ -51,20 +51,20 @@ class JalanPoint(models.Model):
 
 ###  Jembatan  ###    
 class Jembatan(models.Model):
-    surveyor = models.CharField(max_length=254)
-    waktu_surv = models.DateField()
-    nama = models.CharField(max_length=254)
-    no_kode = models.CharField(max_length=254)
-    pal_km = models.CharField(max_length=254)
-    tipe_sebra = models.CharField(max_length=254)
-    jenis_jemb = models.CharField(max_length=254)
-    panjang = models.FloatField()
-    lebar = models.FloatField()
-    jml_bentan = models.FloatField()
-    kondisi = models.CharField(max_length=254)
-    tahun = models.CharField(max_length=254)
-    anggaran = models.FloatField()
-    sumber_dan = models.CharField(max_length=254)
+    surveyor = models.CharField(max_length=254, default='')
+    waktu_surv = models.DateField(default='')
+    nama = models.CharField(max_length=254, default='')
+    no_kode = models.CharField(max_length=254, default='')
+    pal_km = models.CharField(max_length=254, default='')
+    tipe_sebra = models.CharField(max_length=254, default='')
+    jenis_jemb = models.CharField(max_length=254, default='')
+    panjang = models.FloatField(default='')
+    lebar = models.FloatField(default='')
+    jml_bentan = models.FloatField(default='')
+    kondisi = models.CharField(max_length=254, default='')
+    tahun = models.CharField(max_length=254, default='')
+    anggaran = models.FloatField(default='')
+    sumber_dan = models.CharField(max_length=254, default='')
     geom = models.MultiPointField(srid=4326)
 
     def __unicode__(self):
@@ -75,20 +75,20 @@ class Jembatan(models.Model):
 
 ###  Fasilitas Kesehatan  ###
 class Kesehatan(models.Model):
-    surveyor = models.CharField(max_length=254)
-    waktu_surv = models.DateField()
-    nama = models.CharField(max_length=254)
-    alamat = models.CharField(max_length=254)
-    jenis = models.CharField(max_length=254)
-    jml_dokter = models.CharField(max_length=254)
-    jml_perawa = models.CharField(max_length=254)
-    jml_dosen = models.CharField(max_length=254)
-    jml_pasien = models.CharField(max_length=254)
-    fasilitas = models.CharField(max_length=254)
-    kondisi = models.CharField(max_length=254)
-    tahun_diba = models.CharField(max_length=254)
-    anggaran = models.CharField(max_length=254)
-    sumber_dan = models.CharField(max_length=254)
+    surveyor = models.CharField(max_length=254, default='')
+    waktu_surv = models.DateField(default='')
+    nama = models.CharField(max_length=254, default='')
+    alamat = models.CharField(max_length=254, default='')
+    jenis = models.CharField(max_length=254, default='')
+    jml_dokter = models.CharField(max_length=254, default='')
+    jml_perawa = models.CharField(max_length=254, default='')
+    jml_dosen = models.CharField(max_length=254, default='')
+    jml_pasien = models.CharField(max_length=254, default='')
+    fasilitas = models.CharField(max_length=254, default='')
+    kondisi = models.CharField(max_length=254, default='')
+    tahun_diba = models.CharField(max_length=254, default='')
+    anggaran = models.CharField(max_length=254, default='')
+    sumber_dan = models.CharField(max_length=254, default='')
     geom = models.MultiPointField(srid=4326)
 
     def __unicode__(self):
@@ -104,13 +104,13 @@ class Drainase(models.Model):
     no_kode = models.CharField(max_length=254)
     rpru = models.CharField(max_length=254)
     kemiringan = models.CharField(max_length=254)
-    pjg_salura = models.FloatField()
+    pjg_salura = models.FloatField(default='')
     lebar_salu = models.FloatField()
     kedalaman = models.FloatField()
-    kondisi = models.CharField(max_length=254)
-    tahun = models.CharField(max_length=254)
+    kondisi = models.CharField(max_length=254, )
+    tahun = models.CharField(max_length=254,)
     anggaran = models.FloatField()
-    sumber_dan = models.CharField(max_length=254)
+    sumber_dan = models.CharField(max_length=254, )
     geom = models.MultiPointField(srid=4326)
     
     def __unicode__(self):
@@ -121,17 +121,17 @@ class Drainase(models.Model):
 
 ###  Pendidikan  ###
 class Pendidikan(models.Model):
-    surveyor = models.CharField(max_length=254)
-    waktu_surv = models.DateField()
-    nama = models.CharField(max_length=254)
-    alamat = models.CharField(max_length=254)
-    jenjang = models.CharField(max_length=254)
-    jml_kelas = models.FloatField()
-    jml_guru = models.FloatField()
-    jml_siswa = models.FloatField()
-    fasilitas = models.FloatField()
-    tahun = models.CharField(max_length=254)
-    anggaran = models.FloatField()
+    surveyor = models.CharField(max_length=254, default='')
+    waktu_surv = models.DateField(default='')
+    nama = models.CharField(max_length=254, default='')
+    alamat = models.CharField(max_length=254, default='')
+    jenjang = models.CharField(max_length=254, default='')
+    jml_kelas = models.FloatField(default='')
+    jml_guru = models.FloatField(default='')
+    jml_siswa = models.FloatField(default='')
+    fasilitas = models.FloatField(default='')
+    tahun = models.CharField(max_length=254, default='')
+    anggaran = models.FloatField(default='')
     geom = models.MultiPointField(srid=4326)
     
     def __unicode__(self):

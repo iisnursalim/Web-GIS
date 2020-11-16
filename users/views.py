@@ -5,6 +5,7 @@ from django.views.generic import DeleteView
 from django.views.generic.edit import UpdateView
 from maps.models import (
     Jalan,
+    JalanPoint,
     Jembatan,
     Kesehatan,
     Drainase,
@@ -14,6 +15,7 @@ from maps.models import (
 from .forms import (
     UserRegisterForm,
     JalanForm,
+    JalanPointForm,
     JembatanForm,
     KesehatanForm,
     DrainaseForm,
@@ -59,22 +61,13 @@ def uploadjalan(request):
 class JalanAttrUpdateView(UpdateView):
     model = Jalan
     fields = [
-        'surveyor',
-        'surv_time',
-        'number',
-        'name',
-        'length_km',
-        'width_m',
-        'tpp',
-        'tpu',
-        'lhr',
-        'status',
-        'surf_type',
-        'kondisi',
-        'hambatan', 
-        'tahun',
-        'anggaran',
-        'tipe_ruas',
+    'kelas_jln',
+    'panjang',
+    'no_ruas',
+    'nama_jalan',
+    'tipe_perm',
+    'kond_jalan',
+    'lebar',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -85,6 +78,56 @@ class JalanDeleteView(DeleteView):
     success_url = "/jalan/"
 
 
+# Jalan-Point -->
+# List-->
+def JalanPointListView(request):
+    jalanpoint = JalanPoint.objects.all()
+    return render(request,'maps/jalanpoint_list.html',{'jalanpoint':jalanpoint})
+# Upload-->
+def uploadjalanpoint(request):
+    jalanpointform = JalanPointForm()
+    if request.method == "POST":
+        jalanpointform = JalanPointForm(request.POST)
+        if jalanpointform.is_valid():
+            print(jalanpointform.cleaned_data)
+            JalanPoint.objects.create(**jalanpointform.cleaned_data)
+            return redirect('/')
+        else:
+            print(jalanpointform.errors)
+    context = {
+            "form": jalanpointform
+        }
+    return render(request,'upload/upload_jalanpoint.html', context)
+# Update Attribute-->
+class JalanPointAttrUpdateView(UpdateView):
+    model = JalanPoint
+    fields = [
+    'surveyor',
+    'waktu_surv',
+    'nomor_ruas',
+    'nama_jalan',
+    'panjang',
+    'lebar',
+    'tpp',
+    'tpu',
+    'lhr',
+    'klasifikas',
+    'status_adm',
+    'tipe_permu',
+    'kondisi_ja',
+    'hambatan',
+    'tahun',
+    'anggaran',
+    ]
+    template_name_suffix = '_update_form'
+    success_url = '/'
+# Delete-->
+class JalanPointDeleteView(DeleteView):
+    model = JalanPoint
+    template_name = "maps/jalanpoint_delete.html"
+    success_url = "/jalanpoint/"
+
+    
 # Jembatan-->
 # List-->
 def JembatanListView(request):
@@ -109,19 +152,20 @@ def uploadjembatan(request):
 class JembatanAttrUpdateView(UpdateView):
     model = Jembatan
     fields = [
-        'surveyor',
-        'surv_date',
-        'nama',
-        'pal_km',
-        'panjang_m',
-        'lebar_m',
-        'bentang',
-        'tipe_jem',
-        'penyebrang',
-        'bhn_konstr',
-        'kondisi',
-        'tahun',
-        'anggaran',
+    'surveyor',
+    'waktu_surv',
+    'nama',
+    'no_kode',
+    'pal_km',
+    'tipe_sebra',
+    'jenis_jemb',
+    'panjang',
+    'lebar',
+    'jml_bentan',
+    'kondisi',
+    'tahun',
+    'anggaran',
+    'sumber_dan',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -156,20 +200,20 @@ def uploadkesehatan(request):
 class KesehatanAttrUpdateView(UpdateView):
     model = Kesehatan
     fields = [
-        'namobj',
-        'alamat',
-        'remark',
-        'jml_dktr',
-        'jml_prwt',
-        'jml_pasien',
-        'jml_ruang',
-        'fasilitas',
-        'kond_bgnn',
-        'tahun',
-        'anggaran',
-        'sumb_dana',
-        'kontraktor',
-        'surv_time',
+    'surveyor',
+    'waktu_surv',
+    'nama',
+    'alamat',
+    'jenis',
+    'jml_dokter',
+    'jml_perawa',
+    'jml_dosen',
+    'jml_pasien',
+    'fasilitas',
+    'kondisi',
+    'tahun_diba',
+    'anggaran',
+    'sumber_dan',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -204,16 +248,18 @@ def uploaddrainase(request):
 class DrainaseAttrUpdateView(UpdateView):
     model = Drainase
     fields = [
-        'lcode',
-        'rpru',
-        'kemiringan',
-        'panjang_m',
-        'kdlmn_m',
-        'kondisi',
-        'tahun',
-        'anggaran',
-        'kontraktor',
-        'surv_time',
+    'surveyor',
+    'waktu_surv',
+    'no_kode',
+    'rpru',
+    'kemiringan',
+    'pjg_salura',
+    'lebar_salu',
+    'kedalaman',
+    'kondisi',
+    'tahun',
+    'anggaran',
+    'sumber_dan',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -248,17 +294,17 @@ def uploadpendidikan(request):
 class PendidikanAttrUpdateView(UpdateView):
     model = Pendidikan
     fields = [
-        'namobj',
-        'remark',
-        'alamat',
-        'jml_kelas',
-        'jml_guru',
-        'jml_siswa',
-        'fasilitas',
-        'thn_bangun',
-        'anggaran',
-        'surveyor',
-        'surv_time',
+    'surveyor',
+    'waktu_surv',
+    'nama',
+    'alamat',
+    'jenjang',
+    'jml_kelas',
+    'jml_guru',
+    'jml_siswa',
+    'fasilitas',
+    'tahun',
+    'anggaran',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -293,10 +339,15 @@ def uploadkab_sidrap(request):
 class Kab_SidrapAttrUpdateView(UpdateView):
     model = Kab_Sidrap
     fields = [
-        'Provinsi',
-        'Kecamatan',
-        'Desa',
-        'Kabupaten',
+    'provinsi',
+    'kecamatan',
+    'desa',
+    'kode2010',
+    'provno',
+    'kabkotno',
+    'kecno',
+    'desano',
+    'kabkot',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'

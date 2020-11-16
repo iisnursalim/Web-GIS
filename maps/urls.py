@@ -6,6 +6,7 @@ app_name='maps'
 urlpatterns = [
 	path('', maps_views.HomePageView.as_view(), name='home-maps'),	
 	path('data-jalan/', maps_views.jalan_datasets, name = 'data_jalan'),
+	path('data-kondisi-jalan/', maps_views.jalanpoint_datasets, name = 'data_kondisi_jalan'),
 	path('data-jembatan/', maps_views.jembatan_datasets, name='data_jembatan'),
 	path('data-kesehatan/', maps_views.kesehatan_datasets, name='data_kesehatan'),
     path('data-drainase/', maps_views.drainase_datasets, name='data_drainase'),

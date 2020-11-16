@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.core.serializers import serialize
 from django.http import HttpResponse
-from .models import Jalan, Jembatan, Kesehatan, Drainase, Pendidikan, Kab_Sidrap
+from .models import Jalan, JalanPoint, Jembatan, Kesehatan, Drainase, Pendidikan, Kab_Sidrap
 from users import models as user_models
 
 class HomePageView(TemplateView):
@@ -11,6 +11,10 @@ class HomePageView(TemplateView):
 def jalan_datasets(request):
 	jalan = serialize('geojson', Jalan.objects.all())
 	return HttpResponse(jalan, content_type='json')
+
+def jalanpoint_datasets(request):
+	jalanpoint = serialize('geojson', JalanPoint.objects.all())
+	return HttpResponse(jalanpoint, content_type='json')
 
 def jembatan_datasets(request):
 	jembatan = serialize('geojson', Jembatan.objects.all())
@@ -31,6 +35,3 @@ def pendidikan_datasets(request):
 def kab_sidrap_datasets(request):
 	kab_sidrap = serialize('geojson', Kab_Sidrap.objects.all())
 	return HttpResponse(kab_sidrap, content_type='json')
-
-
-

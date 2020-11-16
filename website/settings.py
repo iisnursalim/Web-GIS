@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'infrastruktur_db',
+        'NAME': 'db_sapra',
         'USER': 'postgres',
         'PASSWORD': 'Al-fatih',
         'HOST': 'localhost',

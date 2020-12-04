@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List | Sistem Informasi Sarana dan Prasarana Wilayah</title>
+    <title>List | Webgis Sarana dan Prasarana Wilayah</title>
     {% include 'snippets/vendor.html' %}
 </head>
 <body>
@@ -16,9 +16,9 @@
             <table style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td style="width: 90%"><h2>List Kabupaten Sidrap</h2></td>
+                        <td style="width: 90%"><h2>List Kondisi Jalan</h2></td>
                         <td style="width: 10%">
-                            <a class="btn btn-secondary" href="{% url 'upload_kab_sidrap' %}">
+                            <a class="btn btn-secondary" href="{% url 'upload_jalanpoint' %}">
                                 Upload
                             </a>
                         </td>
@@ -29,7 +29,7 @@
             <table style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td style="width: 90%"><h2>List Kabupaten Sidrap</h2></td>
+                        <td style="width: 90%"><h2>List Kondisi Jalan</h2></td>
                         <td style="width: 10%">
                             <a class="btn btn-secondary" href="#" data-toggle="popover" data-trigger="focus" data-content="You must login first!!!">
                                 Upload
@@ -43,16 +43,18 @@
             <table style="width: 100%;" class="table">
                 <thead>
                     <tr>
-                        <th style="width: 40%;">Desa</th>
-                        <th style="width: 40%;">Kecamatan</th>
+                        <th style="width: 40%;">Nama Jalan</th>
+                        <th style="width: 40%;">Kondisi Jalan</th>
+                        <th style="width: 40%;">Tipe Permukaan</th>
                         <th style="width: 20%;"></th>
                     </tr>
                 </thead>
                 <tbody>
-                {% for Kab_Sidrap in kab_sidrap %}
+                {% for Jalan_Point in jalan_point %}
                 <tr>
-                    <td>{{Kab_Sidrap.desa}}</td>
-                    <td>{{Kab_Sidrap.kecamatan}}</td>
+                    <td>{{Jalan_Point.nama_jalan}}</td>
+                    <td>{{Jalan_Point.kondisi_ja}}</td>
+                    <td>{{Jalan_Point.tipe_permu}}</td>
                     <td>
                         {% if user.is_authenticated %}
                         <div class="btn-group">
@@ -60,8 +62,8 @@
                                 Edit
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{% url 'attr_kab_sidrap' Kab_Sidrap.pk %}">Update Attribute</a>
-                                <a class="dropdown-item" href="{% url 'delete_kab_sidrap' Kab_Sidrap.pk %}">Delete</a>
+                                <a class="dropdown-item" href="{% url 'attr_jalanpoint' Jalan_Point.pk %}">Update Attribute</a>
+                                <a class="dropdown-item" href="{% url 'delete_jalanpoint' Jalan_Point.pk %}">Delete</a>
                             </div>
                         </div>
                         {% else %}
@@ -70,8 +72,8 @@
                                 Edit
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item disabled" href="{% url 'attr_kab_sidrap' Kab_Sidrap.pk %}">Update Attribute</a>
-                                <a class="dropdown-item disabled" href="{% url 'delete_kab_sidrap' Kab_Sidrap.pk %}">Delete</a>
+                                <a class="dropdown-item disabled" href="{% url 'attr_jalanpoint' Jalan_Point.pk %}">Update Attribute</a>
+                                <a class="dropdown-item disabled" href="{% url 'delete_jalanpoint' Jalan_Point.pk %}">Delete</a>
                             </div>
                         </div>
                         {% endif %}

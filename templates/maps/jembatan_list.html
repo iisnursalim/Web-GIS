@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List | Web-GIS Sarana dan Prasarana Wilayah</title>
+    <title>List | Sistem Informasi Sarana dan Prasarana Wilayah</title>
     {% include 'snippets/vendor.html' %}
 </head>
 <body>
@@ -43,16 +43,16 @@
             <table style="width: 100%;" class="table">
                 <thead>
                     <tr>
-                        <th style="width: 40%;">Name</th>
-                        <th style="width: 40%;">Province</th>
+                        <th style="width: 40%;">Nama</th>
+                        <th style="width: 40%;">Kondisi Jembatan</th>
                         <th style="width: 20%;"></th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for Jembatan in jembatan %}
                 <tr>
-                    <td>{{Jembatan.number}}</td>
-                    <td>{{Jembatan.name}}</td>
+                    <td>{{Jembatan.nama}}</td>
+                    <td>{{Jembatan.kondisi}}</td>
                     <td>
                         {% if user.is_authenticated %}
                         <div class="btn-group">

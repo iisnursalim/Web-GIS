@@ -34,98 +34,112 @@
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Tanggal Survei</label>
+				<label class="label">Tanggal Survey</label>
 				<div class="control">
-					{% render_field form.waktu_surv class="form-control" placeholder="Insert Tanggal Survei" %}
+					{% render_field form.waktu_surv class="form-control" placeholder="Insert Tanggal Survey" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Nama</label>
+				<label class="label">Nomor Ruas</label>
 				<div class="control">
-					{% render_field form.nama class="form-control" placeholder="Insert Nama" %}
+					{% render_field form.nomor_ruas class="form-control" placeholder="Insert Nomor Ruas" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Alamat</label>
+				<label class="label">Nama Jalan</label>
 				<div class="control">
-					{% render_field form.alamat class="form-control" placeholder="Insert Alamat" %}
+					{% render_field form.nama_jalan class="form-control" placeholder="Insert Nama Jalan" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Jenis Fasilitas Kesehatan</label>
+				<label class="label">Panjang Jalan (km)</label>
 				<div class="control">
-					{% render_field form.jenis class="form-control" placeholder="Insert Jenis Fasilitas Kesehatan" %}
+					{% render_field form.panjang class="form-control" placeholder="Insert Panjang Jalan" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Jumlah Dokter</label>
+				<label class="label">Lebar Jalan (m)</label>
 				<div class="control">
-					{% render_field form.jml_dokter class="form-control" placeholder="Insert Jumlah Dokter" %}
+					{% render_field form.lebar class="form-control" placeholder="Insert Lebar Jalan" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Jumlah Perawat</label>
+				<label class="label">Titik Pengenal Pangkal</label>
 				<div class="control">
-					{% render_field form.jml_perawa class="form-control" placeholder="Insert Jumlah Perawat" %}
+					{% render_field form.tpp class="form-control" placeholder="Insert Titik Pengenal Pangkal" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Jumlah Ruangan</label>
+				<label class="label">Titik Pengenal Ujung</label>
 				<div class="control">
-					{% render_field form.jml_dosen class="form-control" placeholder="Insert Jumlah Ruangan" %}
+					{% render_field form.tpu class="form-control" placeholder="Insert Titik Pengenal Ujung" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Jumlah Pasien</label>
+				<label class="label">Lalu Lintas Harian Rata-rata</label>
 				<div class="control">
-					{% render_field form.jml_pasien class="form-control" placeholder="Insert Jumlah Pasien" %}
+					{% render_field form.lhr class="form-control" placeholder="Insert Lalu Lintas Harian Rata-rata" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Fasilitas yang Tersedia</label>
+				<label class="label">Klasifikasi Ruas Jalan</label>
 				<div class="control">
-					{% render_field form.fasilitas class="form-control" placeholder="Insert Fasilitas yang Tersedia" %}
+					{% render_field form.klasifikas class="form-control" placeholder="Insert Klasifikasi Ruas Jalan" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Kondisi Bangunan</label>
+				<label class="label">Status Administrasi</label>
 				<div class="control">
-					{% render_field form.kondisi class="form-control" placeholder="Insert Kondisi Bangunan" %}
+					{% render_field form.status_adm class="form-control" placeholder="Insert Status Administrasi" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Tipe Permukaan Jalan</label>
+				<div class="control">
+					{% render_field form.tipe_permu class="form-control" placeholder="Insert Tipe Permukaan Jalan" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Kondisi Jalan</label>
+				<div class="control">
+					{% render_field form.kondisi_ja class="form-control" placeholder="Insert Kondisi Jalan" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Hambatan Lalu Lintas</label>
+				<div class="control">
+					{% render_field form.hambatan class="form-control" placeholder="Insert Hambatan Lalu Lintas" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
 				<label class="label">Tahun Pembangunan</label>
 				<div class="control">
-					{% render_field form.tahun_diba class="form-control" placeholder="Insert Tahun Pembangunan" %}
+					{% render_field form.tahun class="form-control" placeholder="Insert Tahun Pembangunan" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Anggaran Pembanguan</label>
+				<label class="label">Anggaran Pembangunan</label>
 				<div class="control">
-					{% render_field form.anggaran class="form-control" placeholder="Insert Anggaran Pembanguan" %}
-				</div>
-			</div>
-			<br>
-			<div class="field">
-				<label class="label">Sumber Dana</label>
-				<div class="control">
-					{% render_field form.sumber_dan class="form-control" placeholder="Insert Sumber Dana" %}
+					{% render_field form.anggaran class="form-control" placeholder="Insert Anggaran Pembangunan" %}
 				</div>
 			</div>
 			<br>
 			<button style="margin-right: 20px;" type="submit" class="btn btn-success">Save</button>
-			<a href="{% url 'list_kesehatan' %}">
+			<a href="{% url 'list_jalanpoint' %}">
                 <input style="width: 50px;" class="btn btn-danger" type="button" value="No">
             </a>
 		</form>

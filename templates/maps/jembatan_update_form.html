@@ -27,56 +27,105 @@
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="field">
-				<label class="label">Object Name</label>
+				<label class="label">Surveyor</label>
 				<div class="control">
-					{% render_field form.namobj class="form-control" placeholder="Insert Object Name" %}
+					{% render_field form.surveyor class="form-control" placeholder="Insert Surveyor" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Note</label>
+				<label class="label">Tanggal Survei</label>
 				<div class="control">
-					{% render_field form.remark class="form-control" placeholder="Insert Note" %}
+					{% render_field form.waktu_surv class="form-control" placeholder="Insert Tanggal Survei" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Layer Code</label>
+				<label class="label">Nama Jembatan</label>
 				<div class="control">
-					{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
+					{% render_field form.nama class="form-control" placeholder="Insert Nama Jembatan" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">District Name</label>
+				<label class="label">Kode Jembatan</label>
 				<div class="control">
-					{% render_field form.wadmkk class="form-control" placeholder="Insert District Name" %}
+					{% render_field form.no_kode class="form-control" placeholder="Insert Kode Jembatan" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Province Name</label>
+				<label class="label">PAL Kilometer</label>
 				<div class="control">
-					{% render_field form.wadmpr class="form-control" placeholder="Insert Province Name" %}
+					{% render_field form.pal_km class="form-control" placeholder="Insert PAL Kilometer" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">District Capital Name</label>
+				<label class="label">Tipe Penyeberangan</label>
 				<div class="control">
-					{% render_field form.wiadkk class="form-control" placeholder="Insert District Capital Name" %}
+					{% render_field form.tipe_sebra class="form-control" placeholder="Insert Tipe Penyeberangan" %}
 				</div>
 			</div>
 			<br>
 			<div class="field">
-				<label class="label">Area (Hectares)</label>
+				<label class="label">Jenis Jembatan</label>
 				<div class="control">
-					{% render_field form.shp_area class="form-control" placeholder="Insert Area" %}
+					{% render_field form.jenis_jemb class="form-control" placeholder="Insert Jenis Jembatan" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Panjang Jembatan (m)</label>
+				<div class="control">
+					{% render_field form.panjang class="form-control" placeholder="Insert Panjang Jembatan" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Lebar Jembatan (m)</label>
+				<div class="control">
+					{% render_field form.lebar class="form-control" placeholder="Insert Lebar Jembatan" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Jumlah Bentang</label>
+				<div class="control">
+					{% render_field form.jml_bentan class="form-control" placeholder="Insert Jumlah Bentang" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Kondisi Jembatan</label>
+				<div class="control">
+					{% render_field form.kondisi class="form-control" placeholder="Insert Kondisi Jembatan" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Tahun Pembangunan</label>
+				<div class="control">
+					{% render_field form.tahun class="form-control" placeholder="Insert Tahun Pembangunan" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Anggaran Pembangunan</label>
+				<div class="control">
+					{% render_field form.anggaran class="form-control" placeholder="Insert Anggaran Pembangunan" %}
+				</div>
+			</div>
+			<br>
+			<div class="field">
+				<label class="label">Sumber Dana Pembangunan</label>
+				<div class="control">
+					{% render_field form.sumber_dan class="form-control" placeholder="Insert Sumber Dana Pembangunan" %}
 				</div>
 			</div>
 			<br>
 			<button style="margin-right: 20px;" type="submit" class="btn btn-success">Save</button>
-			<a href="{% url 'list_administrasi' %}">
+			<a href="{% url 'list_jembatan' %}">
                 <input style="width: 50px;" class="btn btn-danger" type="button" value="No">
             </a>
 		</form>

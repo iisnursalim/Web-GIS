@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List | Webgis Sarana dan Prasarana Wilayah</title>
+    <title>List | Sistem Informasi Sarana dan Prasarana Wilayah</title>
     {% include 'snippets/vendor.html' %}
 </head>
 <body>
@@ -43,16 +43,16 @@
             <table style="width: 100%;" class="table">
                 <thead>
                     <tr>
-                        <th style="width: 40%;">Name</th>
-                        <th style="width: 40%;">Province</th>
+                        <th style="width: 40%;">Nama Jalan</th>
+                        <th style="width: 40%;">Klasifikasi Jalan</th>
                         <th style="width: 20%;"></th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for Jalan in jalan %}
                 <tr>
-                    <td>{{Jalan.number}}</td>
-                    <td>{{Jalan.name}}</td>
+                    <td>{{Jalan.nama_jalan}}</td>
+                    <td>{{Jalan.kelas_jln}}</td>
                     <td>
                         {% if user.is_authenticated %}
                         <div class="btn-group">

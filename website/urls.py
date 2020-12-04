@@ -19,6 +19,11 @@ urlpatterns = [
     path('jalan/update/<int:pk>', user_views.JalanAttrUpdateView.as_view(), name='attr_jalan'),
     path('jalan/delete/<int:pk>', user_views.JalanDeleteView.as_view(),name='delete_jalan'),
     
+    path('jalanpoint/', user_views.JalanPointListView, name='list_jalanpoint'),
+    path('jalanpoint/upload', user_views.uploadjalanpoint, name='upload_jalanpoint'),
+    path('jalanpoint/update/<int:pk>', user_views.JalanPointAttrUpdateView.as_view(), name='attr_jalanpoint'),
+    path('jalanpoint/delete/<int:pk>', user_views.JalanPointDeleteView.as_view(),name='delete_jalanpoint'),
+    
     path('jembatan/', user_views.JembatanListView, name='list_jembatan'),
 	path('jembatan/upload', user_views.uploadjembatan, name='upload_jembatan'),
     path('jembatan/update/<int:pk>', user_views.JembatanAttrUpdateView.as_view(), name='attr_jembatan'),

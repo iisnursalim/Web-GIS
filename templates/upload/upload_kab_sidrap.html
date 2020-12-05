@@ -7,7 +7,7 @@
 	{{ form.media }}
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Upload Polygon | WebGis Geofisika</title>
+	<title>Upload| Sistem Informasi Sarana dan Prasarana Wilayah</title>
 
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
@@ -20,7 +20,7 @@
 
 {% if user.is_authenticated %}	
 <div class="container jumbotron mt-5">
-	<h2 class="display-4">Upload Administrative</h2>
+	<h2 class="display-4">Upload</h2>
 	<hr class="my-3">
 
 	<div class="form-group">
@@ -31,9 +31,9 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Object Name</label>
+								<label class="label">Provinsi</label>
 								<div class="control">
-									{% render_field form.namobj class="form-control" placeholder="Insert Object Name" %}
+									{% render_field form.provinsi class="form-control" placeholder="Insert Provinsi" %}
 								</div>
 							</div>
 						</td>
@@ -41,9 +41,9 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Note</label>
+								<label class="label">Kecamatan</label>
 								<div class="control">
-									{% render_field form.remark class="form-control" placeholder="Insert Note" %}
+									{% render_field form.kecamatan class="form-control" placeholder="Insert Kecamatan" %}
 								</div>
 							</div>
 						</td>
@@ -51,9 +51,9 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Layer Code</label>
+								<label class="label">Desa</label>
 								<div class="control">
-									{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
+									{% render_field form.desa class="form-control" placeholder="Insert Desa" %}
 								</div>
 							</div>
 						</td>
@@ -61,9 +61,9 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">District Name</label>
+								<label class="label">Kode 2010</label>
 								<div class="control">
-									{% render_field form.wadmkk class="form-control" placeholder="Insert District Name" %}
+									{% render_field form.kode2010 class="form-control" placeholder="Insert Kode 2010" %}
 								</div>
 							</div>
 						</td>
@@ -71,9 +71,9 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Province Name</label>
+								<label class="label">No Provinsi</label>
 								<div class="control">
-									{% render_field form.wadmpr class="form-control" placeholder="Insert Province Name" %}
+									{% render_field form.provno class="form-control" placeholder="Insert No Provinsi" %}
 								</div>
 							</div>
 						</td>
@@ -81,9 +81,9 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">District Capital Name</label>
+								<label class="label">No Kabupaten</label>
 								<div class="control">
-									{% render_field form.wiadkk class="form-control" placeholder="Insert District Capital Name" %}
+									{% render_field form.kabkotno class="form-control" placeholder="Insert No Kabupaten" %}
 								</div>
 							</div>
 						</td>
@@ -91,9 +91,29 @@
 					<tr>
 						<td>
 							<div class="field">
-								<label class="label">Area (Hectares)</label>
+								<label class="label">No Kecamatan</label>
 								<div class="control">
-									{% render_field form.shp_area class="form-control" placeholder="Insert Area" %}
+									{% render_field form.kecno class="form-control" placeholder="Insert No Kecamatan" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">No Desa</label>
+								<div class="control">
+									{% render_field form.desano class="form-control" placeholder="Insert No Desa" %}
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="field">
+								<label class="label">Kabupaten</label>
+								<div class="control">
+									{% render_field form.kabkot class="form-control" placeholder="Insert Kabupaten" %}
 								</div>
 							</div>
 						</td>
@@ -101,9 +121,9 @@
 					<tr>
 						<td style="width: 500px;">
 							<div class="field">
-								<label class="label">Administrative</label>
+								<label class="label">Kabupaten Sidrap</label>
 								<div style="width: 100%; margin-left: 4%;" class="leaflet-control-layers-expanded">
-									{% render_field form.shp class="form-control" id="gis" %}
+									{% render_field form.geom class="form-control" id="gis" %}
 								</div>
 							</div>
 						</td>
@@ -111,7 +131,7 @@
 					<tr>
 						<td>
 							<button style="margin-right: 20px;" type="submit" class="btn btn-primary">Save</button>
-								<a href="{% url 'list_administrasi' %}">
+								<a href="{% url 'list_kab_sidrap' %}">
 									<input style="width: 50px;" class="btn btn-danger" type="button" value="Back">
 								</a>
 						</td>

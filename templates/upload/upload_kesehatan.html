@@ -7,7 +7,7 @@
 	{{ form.media }}
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Upload Point | WebGis Geofisika</title>
+	<title>Upload Fasilitas Kesehatan | Sistem Informasi Sarana dan Prasarana Wilayah</title>
 
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
@@ -20,7 +20,7 @@
 
 {% if user.is_authenticated %}	
 <div class="container jumbotron mt-5">
-	<h2 class="display-4">Upload Education Building</h2>
+	<h2 class="display-4">Upload Fasilitas Kesehatan</h2>
 	<hr class="my-3">
 
 	<div class="form-group">
@@ -31,9 +31,9 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Name</label>
+							<label class="label">Surveyor</label>
 							<div class="control">
-								{% render_field form.namobj class="form-control" placeholder="Insert Name" %}
+								{% render_field form.surveyor class="form-control" placeholder="Insert Surveyor" %}
 							</div>
 						</div>
 					</td>
@@ -41,9 +41,9 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Note</label>
+							<label class="label">Tanggal Survei</label>
 							<div class="control">
-								{% render_field form.remark class="form-control" placeholder="Insert Note" %}
+								{% render_field form.waktu_surv class="form-control" placeholder="Insert Tanggal Survei" %}
 							</div>
 						</div>
 					</td>
@@ -51,9 +51,9 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Layer Code</label>
+							<label class="label">Nama</label>
 							<div class="control">
-								{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
+								{% render_field form.nama class="form-control" placeholder="Insert Nama" %}
 							</div>
 						</div>
 					</td>
@@ -61,9 +61,9 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Function of educational Building</label>
+							<label class="label">Alamat</label>
 							<div class="control">
-								{% render_field form.fgdpdk class="form-control" placeholder="Insert Function of educational Building" %}
+								{% render_field form.alamat class="form-control" placeholder="Insert Alamat" %}
 							</div>
 						</div>
 					</td>
@@ -71,9 +71,99 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Types of education</label>
+							<label class="label">Jenis Fasilitas Kesehatan</label>
 							<div class="control">
-								{% render_field form.jnspdk class="form-control" placeholder="Insert Types of education" %}
+								{% render_field form.jenis class="form-control" placeholder="Insert Jenis Fasilitas Kesehatan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Jumlah Dokter</label>
+							<div class="control">
+								{% render_field form.jml_dokter class="form-control" placeholder="Insert Jumlah Dokter" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Jumlah Perawat</label>
+							<div class="control">
+								{% render_field form.jml_perawa class="form-control" placeholder="Insert Jumlah Perawat" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Jumlah Ruangan</label>
+							<div class="control">
+								{% render_field form.jml_dosen class="form-control" placeholder="Insert Jumlah Ruangan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Jumlah Pasien</label>
+							<div class="control">
+								{% render_field form.jml_pasien class="form-control" placeholder="Insert Jumlah Pasien" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Fasilitas yang Tersedia</label>
+							<div class="control">
+								{% render_field form.fasilitas class="form-control" placeholder="Insert Fasilitas yang Tersedia" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Kondisi Bangunan</label>
+							<div class="control">
+								{% render_field form.kondisi class="form-control" placeholder="Insert Kondisi Bangunan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Tahun Pembangunan</label>
+							<div class="control">
+								{% render_field form.tahun_diba class="form-control" placeholder="Insert Tahun Pembangunan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Anggaran Pembanguan</label>
+							<div class="control">
+								{% render_field form.anggaran class="form-control" placeholder="Insert Anggaran Pembanguan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Sumber Dana</label>
+							<div class="control">
+								{% render_field form.sumber_dan class="form-control" placeholder="Insert Sumber Dana" %}
 							</div>
 						</div>
 					</td>
@@ -81,9 +171,9 @@
 				<tr>
 					<td style="width: 500px;">
 						<div class="field">
-							<label class="label">Building</label>
+							<label class="label">Fasilitas Kesehatan</label>
 							<div style="width: 100%; margin-left: 4%;" class="leaflet-control-layers-expanded">
-								{% render_field form.points class="form-control" %}
+								{% render_field form.geom class="form-control" %}
 							</div>
 						</div>
 					</td>
@@ -91,7 +181,7 @@
 				<tr>
 					<td>
 						<button style="margin-right: 20px;" type="submit" class="btn btn-primary">Save</button>
-							<a href="{% url 'list_edubuild' %}">
+							<a href="{% url 'list_kesehatan' %}">
 								<input style="width: 50px;" class="btn btn-danger" type="button" value="Back">
 							</a>
 					</td>

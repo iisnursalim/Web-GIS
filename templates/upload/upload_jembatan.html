@@ -7,7 +7,7 @@
 	{{ form.media }}
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Upload Point | WebGis Geofisika</title>
+	<title>Upload Jembatan | Sistem Informasi Sarana dan Prasarana Wilayah</title>
 
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
@@ -20,7 +20,7 @@
 
 {% if user.is_authenticated %}	
 <div class="container jumbotron mt-5">
-	<h2 class="display-4">Upload Education Building</h2>
+	<h2 class="display-4">Upload Jembatan</h2>
 	<hr class="my-3">
 
 	<div class="form-group">
@@ -31,9 +31,9 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Name</label>
+							<label class="label">Surveyor</label>
 							<div class="control">
-								{% render_field form.namobj class="form-control" placeholder="Insert Name" %}
+								{% render_field form.surveyor class="form-control" placeholder="Insert Surveyor" %}
 							</div>
 						</div>
 					</td>
@@ -41,9 +41,9 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Note</label>
+							<label class="label">Tanggal Survei</label>
 							<div class="control">
-								{% render_field form.remark class="form-control" placeholder="Insert Note" %}
+								{% render_field form.waktu_surv class="form-control" placeholder="Insert Tanggal Survei" %}
 							</div>
 						</div>
 					</td>
@@ -51,9 +51,9 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Layer Code</label>
+							<label class="label">Nama Jembatan</label>
 							<div class="control">
-								{% render_field form.lcode class="form-control" placeholder="Insert Layer Code" %}
+								{% render_field form.nama class="form-control" placeholder="Insert Nama Jembatan" %}
 							</div>
 						</div>
 					</td>
@@ -61,9 +61,9 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Function of educational Building</label>
+							<label class="label">Kode Jembatan</label>
 							<div class="control">
-								{% render_field form.fgdpdk class="form-control" placeholder="Insert Function of educational Building" %}
+								{% render_field form.no_kode class="form-control" placeholder="Insert Kode Jembatan" %}
 							</div>
 						</div>
 					</td>
@@ -71,9 +71,99 @@
 				<tr>
 					<td>
 						<div class="field">
-							<label class="label">Types of education</label>
+							<label class="label">PAL Kilometer</label>
 							<div class="control">
-								{% render_field form.jnspdk class="form-control" placeholder="Insert Types of education" %}
+								{% render_field form.pal_km class="form-control" placeholder="Insert PAL Kilometer" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Tipe Penyeberangan</label>
+							<div class="control">
+								{% render_field form.tipe_sebra class="form-control" placeholder="Insert Tipe Penyeberangan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Jenis Jembatan</label>
+							<div class="control">
+								{% render_field form.jenis_jemb class="form-control" placeholder="Insert Jenis Jembatan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Panjang Jembatan (m)</label>
+							<div class="control">
+								{% render_field form.panjang class="form-control" placeholder="Insert Panjang Jembatan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Lebar Jembatan (m)</label>
+							<div class="control">
+								{% render_field form.lebar class="form-control" placeholder="Insert Lebar Jembatan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Jumlah Bentang</label>
+							<div class="control">
+								{% render_field form.jml_bentan class="form-control" placeholder="Insert Jumlah Bentang" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Kondisi Jembatan</label>
+							<div class="control">
+								{% render_field form.kondisi class="form-control" placeholder="Insert Kondisi Jembatan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Tahun Pembangunan</label>
+							<div class="control">
+								{% render_field form.tahun class="form-control" placeholder="Insert Tahun Pembangunan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Anggaran Pembangunan</label>
+							<div class="control">
+								{% render_field form.anggaran class="form-control" placeholder="Insert Anggaran Pembangunan" %}
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="field">
+							<label class="label">Sumber Dana Pembangunan</label>
+							<div class="control">
+								{% render_field form.sumber_dan class="form-control" placeholder="Insert Sumber Dana Pembangunan" %}
 							</div>
 						</div>
 					</td>
@@ -81,9 +171,9 @@
 				<tr>
 					<td style="width: 500px;">
 						<div class="field">
-							<label class="label">Building</label>
+							<label class="label">Jembatan</label>
 							<div style="width: 100%; margin-left: 4%;" class="leaflet-control-layers-expanded">
-								{% render_field form.points class="form-control" %}
+								{% render_field form.geom class="form-control" %}
 							</div>
 						</div>
 					</td>
@@ -91,7 +181,7 @@
 				<tr>
 					<td>
 						<button style="margin-right: 20px;" type="submit" class="btn btn-primary">Save</button>
-							<a href="{% url 'list_edubuild' %}">
+							<a href="{% url 'list_jembatan' %}">
 								<input style="width: 50px;" class="btn btn-danger" type="button" value="Back">
 							</a>
 					</td>

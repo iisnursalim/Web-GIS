@@ -137,7 +137,7 @@ LEAFLET_CONFIG = {
     'MAX_ZOOM': 20,
     'MIN_ZOOM': 3,
     'SCALE': 'both',
-    'ATTRIBUTION_PREFIX': 'Universitas Hasanuddin',
+    'ATTRIBUTION_PREFIX': 'Kabupaten Sidrap',
     
 }
 

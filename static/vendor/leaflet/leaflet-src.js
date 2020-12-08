@@ -11602,7 +11602,6 @@ function gridLayer(options) {
 
 
 var TileLayer = GridLayer.extend({
-
 	// @section
 	// @aka TileLayer options
 	options: {

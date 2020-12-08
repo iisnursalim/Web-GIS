@@ -50,11 +50,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for Jalan_Point in jalan_point %}
+                {% for JalanPoint in jalanpoint %}
                 <tr>
-                    <td>{{Jalan_Point.nama_jalan}}</td>
-                    <td>{{Jalan_Point.kondisi_ja}}</td>
-                    <td>{{Jalan_Point.tipe_permu}}</td>
+                    <td>{{JalanPoint.nama_jalan}}</td>
+                    <td>{{JalanPoint.kondisi_ja}}</td>
+                    <td>{{JalanPoint.tipe_permu}}</td>
                     <td>
                         {% if user.is_authenticated %}
                         <div class="btn-group">
@@ -62,8 +62,8 @@
                                 Edit
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{% url 'attr_jalanpoint' Jalan_Point.pk %}">Update Attribute</a>
-                                <a class="dropdown-item" href="{% url 'delete_jalanpoint' Jalan_Point.pk %}">Delete</a>
+                                <a class="dropdown-item" href="{% url 'attr_jalanpoint' JalanPoint.pk %}">Update Attribute</a>
+                                <a class="dropdown-item" href="{% url 'delete_jalanpoint' JalanPoint.pk %}">Delete</a>
                             </div>
                         </div>
                         {% else %}
@@ -72,8 +72,8 @@
                                 Edit
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item disabled" href="{% url 'attr_jalanpoint' Jalan_Point.pk %}">Update Attribute</a>
-                                <a class="dropdown-item disabled" href="{% url 'delete_jalanpoint' Jalan_Point.pk %}">Delete</a>
+                                <a class="dropdown-item disabled" href="{% url 'attr_jalanpoint' JalanPoint.pk %}">Update Attribute</a>
+                                <a class="dropdown-item disabled" href="{% url 'delete_jalanpoint' JalanPoint.pk %}">Delete</a>
                             </div>
                         </div>
                         {% endif %}

@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-secondary" style="height: 10%;">
   <div class="container">
     <div class="navbar-brand">
-      <img  src="/static/img/logosidrap.png" height="50px" alt="">
+      <img  src="/static/img/logosidrap.png" height="40px" alt="">
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,6 +20,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'list_jalan' %}">Jalan</a>
+            <a class="dropdown-item" href="{% url 'list_jalanpoint' %}">Kondisi Jalan</a>
             <a class="dropdown-item" href="{% url 'list_jembatan' %}">Jembatan</a>
             <a class="dropdown-item" href="{% url 'list_kesehatan' %}">Kesehatan</a>
             <a class="dropdown-item" href="{% url 'list_drainase' %}">Drainase</a>
@@ -37,6 +38,7 @@
           {% endif %}
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'upload_jalan' %}">Jalan</a>
+            <a class="dropdown-item" href="{% url 'upload_jalanpoint' %}">Kondisi Jalan</a>
             <a class="dropdown-item" href="{% url 'upload_jembatan' %}">Jembatan</a>
             <a class="dropdown-item" href="{% url 'upload_kesehatan' %}">Kesehatan</a>
             <a class="dropdown-item" href="{% url 'upload_drainase' %}">Drainase</a>

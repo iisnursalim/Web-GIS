@@ -68,6 +68,7 @@ class JalanAttrUpdateView(UpdateView):
     'tipe_perm',
     'kond_jalan',
     'lebar',
+    'geom',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -118,6 +119,7 @@ class JalanPointAttrUpdateView(UpdateView):
     'hambatan',
     'tahun',
     'anggaran',
+    'geom',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -166,6 +168,7 @@ class JembatanAttrUpdateView(UpdateView):
     'tahun',
     'anggaran',
     'sumber_dan',
+    'geom',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -214,6 +217,7 @@ class KesehatanAttrUpdateView(UpdateView):
     'tahun_diba',
     'anggaran',
     'sumber_dan',
+    'geom',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -260,6 +264,7 @@ class DrainaseAttrUpdateView(UpdateView):
     'tahun',
     'anggaran',
     'sumber_dan',
+    'geom',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -305,6 +310,7 @@ class PendidikanAttrUpdateView(UpdateView):
     'fasilitas',
     'tahun',
     'anggaran',
+    'geom',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'
@@ -348,6 +354,7 @@ class Kab_SidrapAttrUpdateView(UpdateView):
     'kecno',
     'desano',
     'kabkot',
+    'geom',
     ]
     template_name_suffix = '_update_form'
     success_url = '/'

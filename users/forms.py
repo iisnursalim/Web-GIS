@@ -1,5 +1,5 @@
 from django import forms
-import floppyforms as forms
+import floppyforms.__future__ as forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -80,7 +80,7 @@ class JalanPointForm(forms.Form):
     anggaran = forms.CharField(max_length=254)
     geom = forms.gis.MultiPointField(widget=MultiPointWidget(attrs={
         'id': 'gis',
-        'style': 'widformsth: 100%;'
+        'style': 'width: 100%;'
     }))
 
 ##------ Jembatan -------##
@@ -101,7 +101,7 @@ class JembatanForm(forms.Form):
     sumber_dan = forms.CharField(max_length=254)
     geom = forms.gis.MultiPointField(widget=MultiPointWidget(attrs={
         'id': 'gis',
-        'style': 'widformsth: 100%;'
+        'style': 'width: 100%;'
     }))
 
 ##------ Fasilitas Kesehatan -------##
@@ -122,7 +122,7 @@ class KesehatanForm(forms.Form):
     sumber_dan = forms.CharField(max_length=254)
     geom = forms.gis.MultiPointField(widget=MultiPointWidget(attrs={
         'id': 'gis',
-        'style': 'widformsth: 100%;'
+        'style': 'width: 100%;'
     }))
 
 ##------ Drainase -------##
@@ -159,7 +159,7 @@ class PendidikanForm(forms.Form):
     anggaran = forms.FloatField()
     geom = forms.gis.MultiPointField(widget=MultiPointWidget(attrs={
         'id': 'gis',
-        'style': 'widformsth: 100%;'
+        'style': 'width: 100%;'
     }))
 
 ##------ ADMINISTRASI KAB SIDRAP-------##

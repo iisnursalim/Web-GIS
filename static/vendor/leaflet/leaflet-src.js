@@ -5567,7 +5567,7 @@ var Scale = Control.extend({
 		if (maxFeet > 5280) {
 			maxMiles = maxFeet / 5280;
 			miles = this._getRoundNum(maxMiles);
-			this._updateScale(this._iScale, miles + ' mi', miles / maxMiles);
+			this._updateScale(this._iScale, miles + ' mil', miles / maxMiles);
 
 		} else {
 			feet = this._getRoundNum(maxFeet);

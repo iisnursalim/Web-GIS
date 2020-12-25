@@ -3,7 +3,7 @@
 {% load leaflet_tags %}
 
 {% block Title %}
-	Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
+Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 {% endblock Title %}
 
 {% block Leaflet_css %}
@@ -15,93 +15,128 @@
 {% endblock Heading %}
 
 {% block Contents %}
-	<script> 
-		function map_layers(map,option){
+<script>
+	function map_layers(map, option) {
 		// Add base map tiles from OpenstreetMap
-			var street = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-				maxZoom: 20,
-				id: 'mapbox/streets-v11',
-				tileSize: 512,
-				zoomOffset: -1,
-				accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
-			});
-			street.addTo(map);
-			var satellite = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-				maxZoom: 20,
-				id: 'mapbox/satellite-streets-v11',
-				tileSize: 512,
-				zoomOffset: -1,
-				accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NDg1bDA1cjYzM280NHJ5NzlvNDMifQ.d6e-nNyBDtmQCVwVNivz7A'
-			});
-		
+		var street = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+			maxZoom: 20,
+			id: 'mapbox/streets-v11',
+			tileSize: 512,
+			zoomOffset: -1,
+			accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
+		});
+		street.addTo(map);
+		var satellite = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+			maxZoom: 20,
+			id: 'mapbox/satellite-streets-v11',
+			tileSize: 512,
+			zoomOffset: -1,
+			accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NDg1bDA1cjYzM280NHJ5NzlvNDMifQ.d6e-nNyBDtmQCVwVNivz7A'
+		});
+
 		// Add data map from database with using L.GeoJSON.AJAX plugin.
 
-			var Jalan = new L.GeoJSON.AJAX("{% url 'maps:data_jalan' %}",{
-				onEachFeature: function(feature, layer){
-					layer.bindPopup('<table style="width:100%"> <tr><td>Nomor Ruas</td><td>: '+feature.properties.no_ruas+'</td></tr><tr><td>Klasifikasi Jalan</td> <td>: '+feature.properties.kelas_jln+'</td></tr> <tr><td>Panjang Jalan (km)</td> <td>: '+feature.properties.panjang+'</td></tr> <tr><td>Lebar (m)</td> <td>: '+feature.properties.lebar+'</td></tr> <tr><td>Tipe Permukaan Jalan</td> <td>: '+feature.properties.tipe_perm+'</td></tr> <tr><td>Kondisi Jalan</td> <td>: '+feature.properties.kond_jalan+'</td></tr></table>');
-				},
-			});
+		var Jalan = new L.GeoJSON.AJAX("{% url 'maps:data_jalan' %}", {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup('<table style="width:100%"> <tr><th>JALAN</th></tr> <tr><td>Klasifikasi Jalan</td> <td>: ' + feature.properties.kelas_jln + '</td></tr> <tr><td>Panjang (km)</td> <td>: ' + feature.properties.panjang + '</td></tr></table>');
+			},
+			style: function(feature){
+				value = feature.properties.kelas_jln;
+				function getColor(d) {
+					return d == 'Jalan Arteri' ? '#A20A0A' :
+						d == 'Jalan Kolektor' ? '#92817A' :
+						d == 'Jalan Lokal' ? '#A53197' :
+						d == 'Jalan Setapak' ? '#321F28' :
+						d == 'Jalan Lain' ? '#7E7474' : '#59FD02';
+				}
+				return{
+					weight: 1,
+					color: getColor(value),
+				};
+			},
+		});
 
 
-			var JalanPoint = new L.GeoJSON.AJAX("{% url 'maps:data_kondisi_jalan' %}",{
-				onEachFeature: function(feature, layer){
-					layer.bindPopup('<table style="width:100%"> <tr><td>Nomor Ruas</td> <td>: '+feature.properties.nomor_ruas+'</td></tr> <tr><td>Nama Jalan</td> <td>: '+feature.properties.nama_jalan+'</td></tr> <tr><td>Status Administrasi</td> <td>: '+feature.properties.status_adm+'</td></tr></table>');
-				},
-			});
+		var JalanPoint = new L.GeoJSON.AJAX("{% url 'maps:data_kondisi_jalan' %}", {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Nomor Ruas</td> <td>: ' + feature.properties.nomor_ruas + '</td></tr> <tr><td>Nama Jalan</td> <td>: ' + feature.properties.nama_jalan + '</td></tr> <tr><td>Panjang</td> <td>: ' + feature.properties.panjang + '</td></tr> <tr><td>Lebar</td> <td>: ' + feature.properties.lebar + '</td></tr> <tr><td>TPP</td> <td>: ' + feature.properties.tpp + '</td></tr> <tr><td>TPU</td> <td>: ' + feature.properties.tpu + '</td></tr> <tr><td>LHR</td> <td>: ' + feature.properties.lhr + '</td></tr> <tr><td>Klasifikasi</td> <td>: ' + feature.properties.klasifikas + '</td></tr> <tr><td>Status Administrasi</td> <td>: ' + feature.properties.status_adm + '</td></tr> <tr><td>Tipe Permukaan</td> <td>: ' + feature.properties.tipe_permu + '</td></tr> <tr><td>Kondisi Jalan</td> <td>: ' + feature.properties.kondisi_ja + '</td></tr> <tr><td>Hambatan</td> <td>: ' + feature.properties.hambatan + '</td></tr> </table>');
+			},
+		});
 
-			var Jembatan = new L.GeoJSON.AJAX("{% url 'maps:data_jembatan' %}",{
-				onEachFeature: function(feature, layer){
-					layer.bindPopup('<table style="width:100%"> <tr><td>Nomor Kode Jembatan</td> <td>: '+feature.properties.no_kode+'</td></tr> <tr><td>Nama Jembatan</td> <td>: '+feature.properties.nama+'</td></tr> <tr><td>Tipe Penyebrangan</td> <td>: '+feature.properties.tipe_sebra+'</td></tr></table>');
-				},
-			});
+		var Jembatan = new L.GeoJSON.AJAX("{% url 'maps:data_jembatan' %}", {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Nama</td> <td>: ' + feature.properties.nama + '</td></tr> <tr><td>Kode Jembatan</td> <td>: ' + feature.properties.no_kode + '</td></tr> <tr><td>Tipe Penyebrangan</td> <td>: ' + feature.properties.tipe_sebra + '</td></tr> <tr><td>Jenis Jembatan</td> <td>: ' + feature.properties.jenis_jemb + '</td></tr> <tr><td>Panjang</td> <td>: ' + feature.properties.panjang + '</td></tr> <tr><td>Lebar</td> <td>: ' + feature.properties.lebar + '</td></tr> <tr><td>Jumlah Bentang</td> <td>: ' + feature.properties.jml_bentan + '</td></tr> <tr><td>Kondisi Jembatan</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
+			},
+		});
 
-			var Kesehatan = new L.GeoJSON.AJAX("{% url 'maps:data_kesehatan' %}",{
-				onEachFeature: function(feature, layer){
-					layer.bindPopup('<table style="width:100%"> <tr><td>Nama</td> <td>: '+feature.properties.nama+'</td></tr> <tr><td>Alamat</td> <td>: '+feature.properties.alamat+'</td></tr> <tr><td>Jenis Fasilitas Kesehatan</td> <td>: '+feature.properties.jenis+'</td></tr></table>');
-				},
-			});
+		var Kesehatan = new L.GeoJSON.AJAX("{% url 'maps:data_kesehatan' %}", {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Nama</td> <td>: ' + feature.properties.nama + '</td></tr> <tr><td>Alamat</td> <td>: ' + feature.properties.alamat + '</td></tr> <tr><td>Jenis Fasilitas Kesehatan</td> <td>: ' + feature.properties.jenis + '</td></tr> <tr><td>Kondisi</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
+			},
+		});
 
-			var Drainase = new L.GeoJSON.AJAX("{% url 'maps:data_drainase' %}",{
-				onEachFeature: function(feature, layer){
-					layer.bindPopup('<table style="width:100%"> <tr><td>Kode Drainase</td> <td>: '+feature.properties.no_kode+'</td></tr> <tr><td>Ruas Pangkal-Ruas Ujung</td> <td>: '+feature.properties.rpru+'</td></tr> <tr><td>Kondisi Drainsase</td> <td>: '+feature.properties.kondisi+'</td></tr> </table>');
-				},
-			});
-			
-			var Pendidikan = new L.GeoJSON.AJAX("{% url 'maps:data_pendidikan' %}",{
-				onEachFeature: function(feature, layer){
-					layer.bindPopup('<table style="width:100%"> <tr><td>Nama Sekolah</td> <td>:'+feature.properties.nama+'</td></tr> <tr><td>Alamat</td> <td>: '+feature.properties.alamat+'</td></tr> <tr><td>Jenjang</td> <td>: '+feature.properties.jenjang+'</td></tr></table>');
-				},
-			});
+		var Drainase = new L.GeoJSON.AJAX("{% url 'maps:data_drainase' %}", {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr>  <tr><td>Kode Drainase</td> <td>: ' + feature.properties.no_kode + '</td></tr> <tr><td>RPRU</td> <td>: ' + feature.properties.rpru + '</td></tr> <tr><td>Kemiringan</td> <td>: ' + feature.properties.kemiringan + '</td></tr> <tr><td>Lebar Saluran</td> <td>: ' + feature.properties.lebar_salu + '</td></tr> <tr><td>Kondisi Drainsase</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
+			},
+		});
 
-			var Kab_Sidrap = new L.GeoJSON.AJAX("{% url 'maps:data_kab_sidrap' %}",{
-				onEachFeature: function(feature, layer){
-					layer.bindPopup('<table style="width:100%"> <tr><td>Desa</td> <td>: '+feature.properties.desa+'</td></tr> <tr><td>Kecamatan</td> <td>: '+feature.properties.kecamatan+'</td></tr></table>');
-				},
-			});
+		var Pendidikan = new L.GeoJSON.AJAX("{% url 'maps:data_pendidikan' %}", {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Nama Sekolah</td> <td>: ' + feature.properties.nama + '</td></tr> <tr><td>Alamat</td> <td>: ' + feature.properties.alamat + '</td></tr> <tr><td>Jenjang</td> <td>: ' + feature.properties.jenjang + '</td></tr></table>');
+			},
+		});
+
+		var Kab_Sidrap = new L.GeoJSON.AJAX("{% url 'maps:data_kab_sidrap' %}", {
+			onEachFeature: function (feature, layer) {
+				layer.bindPopup('<table style="width:100%"> <tr><th>KABUPATEN SIDRAP</th></tr> <tr><td>Desa</td> <td>: ' + feature.properties.desa + '</td></tr> <tr><td>Kecamatan</td> <td>: ' + feature.properties.kecamatan + '</td></tr></table>');
+			},
+			style: function(feature){
+				value = feature.properties.kecamatan;
+				function getColor(d) {
+					return d == 'PITU RIASE' ? '#F38484' :
+						d == 'PITU RIAWA' ? '#D597F9' :
+						d == 'KULO' ? '#ACC715' :
+						d == 'BARANTI' ? '#EC9949' :
+						d == 'MARITENGNGAE' ? '#4C51EF' :
+						d == 'DUAPITUE' ? '#EF4242' :
+						d == 'PANCA LAUTANG' ? '#EEF72E' :
+						d == 'WATANG PULU' ? '#ACAF76' :
+						d == 'TELLULIMPO E' ? '#A53197' :
+						d == 'PANCA RIJANG' ? '#ff7800' :
+						d == 'WATANG SIDENRENG' ? '#ff7800' : '#59FD02';
+				}
+				return{
+					fillColor: getColor(value),
+					fillOpacity: 0.7,
+					weight: 2,
+					opacity:0.3,
+					color: 'grey',
+					Dashboard: '3',
+				};
+			},
+		});
 
 		// Add control layers
-			var baseLayers = {
-				"Streets": street,
-				"Satellite": satellite
-			}
-			var overlayMaps = {
-				"Layers": {
-					"Jalan": Jalan,
-					"Kondisi Jalan": JalanPoint,
-					"Jembatan": Jembatan,
-					"Kesehatan": Kesehatan,
-					"Drainase": Drainase,
-					"Pendidikan": Pendidikan,
-					"Kab_Sidrap": Kab_Sidrap					
-				}
-			};
-			L.control.groupedLayers(baseLayers, overlayMaps).addTo(map);
+		var baseLayers = {
+			"Streets": street,
+			"Satellite": satellite
 		}
-	</script>
-	
-	{% leaflet_map "gis" callback="window.map_layers" %}
+		var overlayMaps = {
+			"Layers": {
+				"Jalan": Jalan,
+				"Kondisi Jalan": JalanPoint,
+				"Kondisi Jembatan": Jembatan,
+				"Prasarana Kesehatan": Kesehatan,
+				"Kondisi Drainase": Drainase,
+				"Sarana Pendidikan": Pendidikan,
+				"Kabupaten Sidrap": Kab_Sidrap
+			}
+		};
+		L.control.groupedLayers(baseLayers, overlayMaps).addTo(map);
+
+	}
+</script>
+
+{% leaflet_map "gis" callback="window.map_layers" %}
 {% endblock Contents %}
-
-
-
-

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete | Sistem Informasi Sarana dan Prasarana Wilayah</title>
     {% include 'snippets/vendor.html' %}
 </head>
+
 <body>
     {% include 'snippets/navbar.html' %}
     {% if user.is_authenticated %}
@@ -34,6 +36,7 @@
     </div>
     {% endif %}
     <script src="{% static 'vendor/popper/popper.js' %}"></script>
-	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
+
 </html>

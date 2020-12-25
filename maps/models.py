@@ -18,7 +18,7 @@ class Jalan(models.Model):
     geom = models.MultiLineStringField(srid=4326)
 
     def __unicode__(self):
-        return self.nama_jalan
+        return self.kelas_jln
 
     class Meta:
         verbose_name_plural = 'Jalan'
@@ -44,7 +44,7 @@ class JalanPoint(models.Model):
     geom = models.MultiPointField(srid=4326)
 
     def __unicode__(self):
-        return self.nama_jalan
+        return self.surveyor
 
     class Meta:
         verbose_name_plural = 'Kondisi Jalan'
@@ -68,7 +68,7 @@ class Jembatan(models.Model):
     geom = models.MultiPointField(srid=4326)
 
     def __unicode__(self):
-        return self.nama
+        return self.surveyor
 
     class Meta:
         verbose_name_plural = 'Jembatan'
@@ -92,7 +92,7 @@ class Kesehatan(models.Model):
     geom = models.MultiPointField(srid=4326)
 
     def __unicode__(self):
-        return self.nama
+        return self.surveyor
 
     class Meta:
         verbose_name_plural = 'Fasilitas Kesehatan'
@@ -114,7 +114,7 @@ class Drainase(models.Model):
     geom = models.MultiPointField(srid=4326)
     
     def __unicode__(self):
-        return self.no_kode
+        return self.surveyor
 
     class Meta:
         verbose_name_plural = 'Drainase'
@@ -135,7 +135,7 @@ class Pendidikan(models.Model):
     geom = models.MultiPointField(srid=4326)
     
     def __unicode__(self):
-        return self.nama
+        return self.surveyor
 
     class Meta:
         verbose_name_plural = 'Pendidikan'

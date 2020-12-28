@@ -81,7 +81,7 @@ Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 
 		var Jembatan = new L.GeoJSON.AJAX("{% url 'maps:data_jembatan' %}", {
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup('<table style="width:100%"> <tr><th colspan ="2" style="background:grey; color:white; text-align:center; padding: 5px; text-transform:uppercase">Jembatan '+ feature.properties.nama + '</th></tr> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Kode Jembatan</td> <td>: ' + feature.properties.no_kode + '</td></tr> <tr><td>Tipe Penyebrangan</td> <td>: ' + feature.properties.tipe_sebra + '</td></tr> <tr><td>Jenis Jembatan</td> <td>: ' + feature.properties.jenis_jemb + '</td></tr> <tr><td>Panjang</td> <td>: ' + feature.properties.panjang + '</td></tr> <tr><td>Lebar</td> <td>: ' + feature.properties.lebar + '</td></tr> <tr><td>Jumlah Bentang</td> <td>: ' + feature.properties.jml_bentan + '</td></tr> <tr><td>Kondisi Jembatan</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
+				layer.bindPopup('<table style="width:100%"> <tr><th colspan ="2" style="background:grey; color:white; text-align:center; padding: 5px; text-transform:uppercase">Jembatan '+ feature.properties.nama + '</th></tr> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Kode Jembatan</td> <td>: ' + feature.properties.no_kode + '</td></tr> <tr><td>Tipe Penyebrangan</td> <td>: ' + feature.properties.tipe_sebra + '</td></tr> <tr><td>Jenis Jembatan</td> <td>: ' + feature.properties.jenis_jemb + '</td></tr> <tr><td>Panjang</td> <td>: ' + feature.properties.panjang + '</td></tr> <tr><td>Lebar</td> <td>: ' + feature.properties.lebar + '</td></tr> <tr><td>Jumlah Bentang</td> <td>: ' + feature.properties.jml_bentan + '</td></tr> <tr><td>Kondisi</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
 			},
 			pointToLayer: function(feature, latlng) {
                 var smallIcon = new L.Icon({
@@ -141,7 +141,7 @@ Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 
 		var Kab_Sidrap = new L.GeoJSON.AJAX("{% url 'maps:data_kab_sidrap' %}", {
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup('<table style="width:100%;"> <tr><th style="padding: 5px">Desa</th> <td>: ' + feature.properties.desa + '</td></tr> <tr><th style="padding: 5px">Kecamatan</th> <td>: ' + feature.properties.kecamatan + '</td></tr></table>');
+				layer.bindPopup('<table style="width:100%;"> <tr><th>Desa</th> <td>: ' + feature.properties.desa + '</td></tr> <tr><th>Kecamatan</th> <td>: ' + feature.properties.kecamatan + '</td></tr></table>');
 			},
 			style: function (feature) {
 				value = feature.properties.kecamatan;

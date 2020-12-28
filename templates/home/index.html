@@ -40,16 +40,16 @@ Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup('<table style="width:100%"> <tr><th>JALAN</th></tr> <tr><td>Klasifikasi Jalan</td> <td>: ' + feature.properties.kelas_jln + '</td></tr> <tr><td>Panjang (km)</td> <td>: ' + feature.properties.panjang + '</td></tr></table>');
 			},
-			style: function(feature){
+			style: function (feature) {
 				value = feature.properties.kelas_jln;
 				function getColor(d) {
 					return d == 'Jalan Arteri' ? '#A20A0A' :
 						d == 'Jalan Kolektor' ? '#92817A' :
-						d == 'Jalan Lokal' ? '#A53197' :
-						d == 'Jalan Setapak' ? '#321F28' :
-						d == 'Jalan Lain' ? '#7E7474' : '#59FD02';
+							d == 'Jalan Lokal' ? '#A53197' :
+								d == 'Jalan Setapak' ? '#321F28' :
+									d == 'Jalan Lain' ? '#7E7474' : '#59FD02';
 				}
-				return{
+				return {
 					weight: 1,
 					color: getColor(value),
 				};
@@ -91,31 +91,32 @@ Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 			onEachFeature: function (feature, layer) {
 				layer.bindPopup('<table style="width:100%"> <tr><th>KABUPATEN SIDRAP</th></tr> <tr><td>Desa</td> <td>: ' + feature.properties.desa + '</td></tr> <tr><td>Kecamatan</td> <td>: ' + feature.properties.kecamatan + '</td></tr></table>');
 			},
-			style: function(feature){
+			style: function (feature) {
 				value = feature.properties.kecamatan;
 				function getColor(d) {
-					return d == 'PITU RIASE' ? '#F38484' :
-						d == 'PITU RIAWA' ? '#D597F9' :
-						d == 'KULO' ? '#ACC715' :
-						d == 'BARANTI' ? '#EC9949' :
-						d == 'MARITENGNGAE' ? '#4C51EF' :
-						d == 'DUAPITUE' ? '#EF4242' :
-						d == 'PANCA LAUTANG' ? '#EEF72E' :
-						d == 'WATANG PULU' ? '#ACAF76' :
-						d == 'TELLULIMPO E' ? '#A53197' :
-						d == 'PANCA RIJANG' ? '#ff7800' :
-						d == 'WATANG SIDENRENG' ? '#ff7800' : '#59FD02';
+					return d == 'PITU RIASE' ? '#800026' :
+						d == 'PITU RIAWA' ? '#bd0026' :
+							d == 'KULO' ? '#e31a1c' :
+								d == 'BARANTI' ? '#fc4e2a' :
+									d == 'MARITENGNGAE' ? '#fd8d3c' :
+										d == 'DUAPITUE' ? '#feb24c' :
+											d == 'PANCA LAUTANG' ? '#fed976' :
+												d == 'WATANG PULU' ? '#ffeda0' :
+													d == 'TELLULIMPO E' ? '#fc9272' :
+														d == 'PANCA RIJANG' ? '#ef3b2c' :
+															d == 'WATANG SIDENRENG' ? '#67000d' : '#ffffcc';
 				}
-				return{
+				return {
 					fillColor: getColor(value),
-					fillOpacity: 0.7,
+					fillOpacity: 0.8,
 					weight: 2,
-					opacity:0.3,
+					opacity: 0.3,
 					color: 'grey',
 					Dashboard: '3',
 				};
 			},
 		});
+		Kab_Sidrap.addTo(map);
 
 		// Add control layers
 		var baseLayers = {
@@ -136,6 +137,7 @@ Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 		L.control.groupedLayers(baseLayers, overlayMaps).addTo(map);
 
 	}
+
 </script>
 
 {% leaflet_map "gis" callback="window.map_layers" %}

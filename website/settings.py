@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'jquery',
     'floppyforms',
     'leaflet',
     'widget_tweaks',
@@ -133,10 +134,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (-3.812159, 119.996463),
-    'DEFAULT_ZOOM': 9,
+    'DEFAULT_ZOOM': 10,
     'MAX_ZOOM': 20,
-    'MIN_ZOOM': 3,
+    'MIN_ZOOM': 5,
     'SCALE': 'both',
+    'RESET_VIEW': False,
     'ATTRIBUTION_PREFIX': 'Kabupaten Sidrap',
     
 }

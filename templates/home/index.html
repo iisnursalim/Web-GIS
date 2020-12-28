@@ -41,17 +41,24 @@ Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 				layer.bindPopup('<table style="width:100%"> <tr><th>JALAN</th></tr> <tr><td>Klasifikasi Jalan</td> <td>: ' + feature.properties.kelas_jln + '</td></tr> <tr><td>Panjang (km)</td> <td>: ' + feature.properties.panjang + '</td></tr></table>');
 			},
 			style: function (feature) {
+				var weight;
+				if (feature.properties.kelas_jln == 'Jalan Arteri') {weight = 2.5;}
+				else if (feature.properties.kelas_jln == 'Jalan Kolektor') {weight = 2;}
+				else if (feature.properties.kelas_jln == 'Jalan Lokal') {weight = 2;}
+				else if (feature.properties.kelas_jln == 'Jalan Setapak') {weight = 0.5;}
+				else if (feature.properties.kelas_jln == 'Jalan Lain') {weight = 0.3;}
 				value = feature.properties.kelas_jln;
 				function getColor(d) {
-					return d == 'Jalan Arteri' ? '#A20A0A' :
-						d == 'Jalan Kolektor' ? '#92817A' :
-							d == 'Jalan Lokal' ? '#A53197' :
-								d == 'Jalan Setapak' ? '#321F28' :
+					return d == 'Jalan Arteri' ? '#FFAC0E' :
+						d == 'Jalan Kolektor' ? '#FCEEDD' :
+							d == 'Jalan Lokal' ? '#C4AF00' :
+								d == 'Jalan Setapak' ? '#7E7474' :
 									d == 'Jalan Lain' ? '#7E7474' : '#59FD02';
 				}
 				return {
-					weight: 1,
+					weight: weight,
 					color: getColor(value),
+                	lineJoin: 'round',
 				};
 			},
 		});
@@ -59,60 +66,104 @@ Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 
 		var JalanPoint = new L.GeoJSON.AJAX("{% url 'maps:data_kondisi_jalan' %}", {
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Nomor Ruas</td> <td>: ' + feature.properties.nomor_ruas + '</td></tr> <tr><td>Nama Jalan</td> <td>: ' + feature.properties.nama_jalan + '</td></tr> <tr><td>Panjang</td> <td>: ' + feature.properties.panjang + '</td></tr> <tr><td>Lebar</td> <td>: ' + feature.properties.lebar + '</td></tr> <tr><td>TPP</td> <td>: ' + feature.properties.tpp + '</td></tr> <tr><td>TPU</td> <td>: ' + feature.properties.tpu + '</td></tr> <tr><td>LHR</td> <td>: ' + feature.properties.lhr + '</td></tr> <tr><td>Klasifikasi</td> <td>: ' + feature.properties.klasifikas + '</td></tr> <tr><td>Status Administrasi</td> <td>: ' + feature.properties.status_adm + '</td></tr> <tr><td>Tipe Permukaan</td> <td>: ' + feature.properties.tipe_permu + '</td></tr> <tr><td>Kondisi Jalan</td> <td>: ' + feature.properties.kondisi_ja + '</td></tr> <tr><td>Hambatan</td> <td>: ' + feature.properties.hambatan + '</td></tr> </table>');
+				layer.bindPopup('<table style="width:100%;"> <tr><th colspan ="2" style="background:grey; color:white; text-align:center; padding: 5px; text-transform:uppercase">Jalan '+ feature.properties.nama_jalan + '</th></tr> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Nomor Ruas</td> <td>: ' + feature.properties.nomor_ruas + '</td></tr> <tr><td>Panjang</td> <td>: ' + feature.properties.panjang + '</td></tr> <tr><td>Lebar</td> <td>: ' + feature.properties.lebar + '</td></tr> <tr><td>TPP</td> <td>: ' + feature.properties.tpp + '</td></tr> <tr><td>TPU</td> <td>: ' + feature.properties.tpu + '</td></tr> <tr><td>LHR</td> <td>: ' + feature.properties.lhr + '</td></tr> <tr><td>Klasifikasi</td> <td>: ' + feature.properties.klasifikas + '</td></tr> <tr><td>Status Administrasi</td> <td>: ' + feature.properties.status_adm + '</td></tr> <tr><td>Tipe Permukaan</td> <td>: ' + feature.properties.tipe_permu + '</td></tr> <tr><td>Kondisi Jalan</td> <th>: ' + feature.properties.kondisi_ja + '</th></tr> <tr><td>Hambatan</td> <td>: ' + feature.properties.hambatan + '</td></tr> </table>');
+			},
+			pointToLayer: function(feature, latlng) {
+                var smallIcon = new L.Icon({
+                        iconSize: [35, 35],
+                        iconAnchor: [13, 27],
+                        popupAnchor:  [1, -24],
+                        iconUrl: 'static/img/kondisi-jalan-02.svg',
+                });
+				return L.marker(latlng, {icon: smallIcon});
 			},
 		});
 
 		var Jembatan = new L.GeoJSON.AJAX("{% url 'maps:data_jembatan' %}", {
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Nama</td> <td>: ' + feature.properties.nama + '</td></tr> <tr><td>Kode Jembatan</td> <td>: ' + feature.properties.no_kode + '</td></tr> <tr><td>Tipe Penyebrangan</td> <td>: ' + feature.properties.tipe_sebra + '</td></tr> <tr><td>Jenis Jembatan</td> <td>: ' + feature.properties.jenis_jemb + '</td></tr> <tr><td>Panjang</td> <td>: ' + feature.properties.panjang + '</td></tr> <tr><td>Lebar</td> <td>: ' + feature.properties.lebar + '</td></tr> <tr><td>Jumlah Bentang</td> <td>: ' + feature.properties.jml_bentan + '</td></tr> <tr><td>Kondisi Jembatan</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
+				layer.bindPopup('<table style="width:100%"> <tr><th colspan ="2" style="background:grey; color:white; text-align:center; padding: 5px; text-transform:uppercase">Jembatan '+ feature.properties.nama + '</th></tr> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Kode Jembatan</td> <td>: ' + feature.properties.no_kode + '</td></tr> <tr><td>Tipe Penyebrangan</td> <td>: ' + feature.properties.tipe_sebra + '</td></tr> <tr><td>Jenis Jembatan</td> <td>: ' + feature.properties.jenis_jemb + '</td></tr> <tr><td>Panjang</td> <td>: ' + feature.properties.panjang + '</td></tr> <tr><td>Lebar</td> <td>: ' + feature.properties.lebar + '</td></tr> <tr><td>Jumlah Bentang</td> <td>: ' + feature.properties.jml_bentan + '</td></tr> <tr><td>Kondisi Jembatan</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
+			},
+			pointToLayer: function(feature, latlng) {
+                var smallIcon = new L.Icon({
+                        iconSize: [35, 35],
+                        iconAnchor: [13, 27],
+                        popupAnchor:  [1, -24],
+                        iconUrl: 'static/img/jembatan.svg',
+                });
+				return L.marker(latlng, {icon: smallIcon});
 			},
 		});
 
 		var Kesehatan = new L.GeoJSON.AJAX("{% url 'maps:data_kesehatan' %}", {
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Nama</td> <td>: ' + feature.properties.nama + '</td></tr> <tr><td>Alamat</td> <td>: ' + feature.properties.alamat + '</td></tr> <tr><td>Jenis Fasilitas Kesehatan</td> <td>: ' + feature.properties.jenis + '</td></tr> <tr><td>Kondisi</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
+				layer.bindPopup('<table style="width:100%"> <tr><th colspan ="2" style="background:grey; color:white; text-align:center; padding: 5px; text-transform:uppercase">'+ feature.properties.nama + '</th></tr> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Alamat</td> <td>: ' + feature.properties.alamat + '</td></tr> <tr><td>Jenis Fasilitas Kesehatan</td> <td>: ' + feature.properties.jenis + '</td></tr> <tr><td>Kondisi</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
+			},
+			pointToLayer: function(feature, latlng) {
+                var smallIcon = new L.Icon({
+                        iconSize: [35, 35],
+                        iconAnchor: [13, 27],
+                        popupAnchor:  [1, -24],
+                        iconUrl: 'static/img/faskes-02.svg',
+                });
+				return L.marker(latlng, {icon: smallIcon});
 			},
 		});
 
 		var Drainase = new L.GeoJSON.AJAX("{% url 'maps:data_drainase' %}", {
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr>  <tr><td>Kode Drainase</td> <td>: ' + feature.properties.no_kode + '</td></tr> <tr><td>RPRU</td> <td>: ' + feature.properties.rpru + '</td></tr> <tr><td>Kemiringan</td> <td>: ' + feature.properties.kemiringan + '</td></tr> <tr><td>Lebar Saluran</td> <td>: ' + feature.properties.lebar_salu + '</td></tr> <tr><td>Kondisi Drainsase</td> <td>: ' + feature.properties.kondisi + '</td></tr> </table>');
+				layer.bindPopup('<table style="width:100%"><tr><th colspan ="2" style="background:grey; color:white; text-align:center; padding: 5px; text-transform:uppercase">Kondisi '+ feature.properties.kondisi + '</th></tr><tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr>  <tr><td>Kode Drainase</td> <td>: ' + feature.properties.no_kode + '</td></tr> <tr><td>RPRU</td> <td>: ' + feature.properties.rpru + '</td></tr> <tr><td>Kemiringan</td> <td>: ' + feature.properties.kemiringan + '</td></tr> <tr><td>Lebar Saluran</td> <td>: ' + feature.properties.lebar_salu + '</td></tr></table>');
+			},
+			pointToLayer: function(feature, latlng) {
+                var smallIcon = new L.Icon({
+                        iconSize: [35, 35],
+                        iconAnchor: [13, 27],
+                        popupAnchor:  [1, -24],
+                        iconUrl: 'static/img/drainase.svg',
+                });
+				return L.marker(latlng, {icon: smallIcon});
 			},
 		});
 
 		var Pendidikan = new L.GeoJSON.AJAX("{% url 'maps:data_pendidikan' %}", {
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup('<table style="width:100%"> <tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr> <tr><td>Nama Sekolah</td> <td>: ' + feature.properties.nama + '</td></tr> <tr><td>Alamat</td> <td>: ' + feature.properties.alamat + '</td></tr> <tr><td>Jenjang</td> <td>: ' + feature.properties.jenjang + '</td></tr></table>');
+				layer.bindPopup('<table style="width:100%"><tr><th colspan ="2" style="background:grey; color:white; text-align:center; padding: 5px; text-transform:uppercase">'+ feature.properties.nama + '</th></tr><tr><td>Surveyor</td> <td>: ' + feature.properties.surveyor + '</td></tr> <tr><td>Tanggal Survei</td> <td>: ' + feature.properties.waktu_surv + '</td></tr><tr><td>Alamat</td> <td>: ' + feature.properties.alamat + '</td></tr> <tr><td>Jenjang</td> <td>: ' + feature.properties.jenjang + '</td></tr></table>');
+			},
+			pointToLayer: function(feature, latlng) {
+                var smallIcon = new L.Icon({
+                        iconSize: [35, 35],
+                        iconAnchor: [13, 27],
+                        popupAnchor:  [1, -24],
+                        iconUrl: 'static/img/sekolah-02.svg',
+                });
+				return L.marker(latlng, {icon: smallIcon});
 			},
 		});
 
 		var Kab_Sidrap = new L.GeoJSON.AJAX("{% url 'maps:data_kab_sidrap' %}", {
 			onEachFeature: function (feature, layer) {
-				layer.bindPopup('<table style="width:100%"> <tr><th>KABUPATEN SIDRAP</th></tr> <tr><td>Desa</td> <td>: ' + feature.properties.desa + '</td></tr> <tr><td>Kecamatan</td> <td>: ' + feature.properties.kecamatan + '</td></tr></table>');
+				layer.bindPopup('<table style="width:100%;"> <tr><th style="padding: 5px">Desa</th> <td>: ' + feature.properties.desa + '</td></tr> <tr><th style="padding: 5px">Kecamatan</th> <td>: ' + feature.properties.kecamatan + '</td></tr></table>');
 			},
 			style: function (feature) {
 				value = feature.properties.kecamatan;
 				function getColor(d) {
-					return d == 'PITU RIASE' ? '#800026' :
-						d == 'PITU RIAWA' ? '#bd0026' :
-							d == 'KULO' ? '#e31a1c' :
-								d == 'BARANTI' ? '#fc4e2a' :
-									d == 'MARITENGNGAE' ? '#fd8d3c' :
-										d == 'DUAPITUE' ? '#feb24c' :
-											d == 'PANCA LAUTANG' ? '#fed976' :
-												d == 'WATANG PULU' ? '#ffeda0' :
-													d == 'TELLULIMPO E' ? '#fc9272' :
-														d == 'PANCA RIJANG' ? '#ef3b2c' :
-															d == 'WATANG SIDENRENG' ? '#67000d' : '#ffffcc';
+					return d == 'PITU RIASE' ? '#701326' :
+						d == 'PITU RIAWA' ? '#9C1033' :
+							d == 'KULO' ? '#A1A64C' :
+								d == 'BARANTI' ? '#E48C74' :
+									d == 'MARITENGNGAE' ? '#9A786C' :
+										d == 'DUAPITUE' ? '#763545' :
+											d == 'PANCA LAUTANG' ? '#B04D14' :
+												d == 'WATANG PULU' ? '#C57C1D' :
+													d == 'TELLULIMPO E' ? '#604527' :
+														d == 'PANCA RIJANG' ? '#505513' :
+															d == 'WATANG SIDENRENG' ? '#C63846' : '#614628';
 				}
 				return {
 					fillColor: getColor(value),
 					fillOpacity: 0.8,
-					weight: 2,
-					opacity: 0.3,
-					color: 'grey',
-					Dashboard: '3',
+					weight: 1.2,
+					opacity: 0.8,
+					color: '#9A786C',
 				};
 			},
 		});

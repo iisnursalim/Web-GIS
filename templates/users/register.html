@@ -2,23 +2,23 @@
 {% load crispy_forms_tags %}
 
 {% block Title %}
-    Register - Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
+    Sign Up - Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 {% endblock Title %}
 
 {% block Contents %}
-    <div class="container jumbotron content-section mt-5">
+    <div class="container jumbotron content-section mt-5" style="background-color:rgb(156, 204, 204);">
         <form action="" method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Register Now</legend>
+                <legend class="border-bottom mb-4">SIGN UP</legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                <button class="btn btn-info" type="submit">Sign Up</button>
             </div>
         </form>
         <div class="border-top pt-3">
-            <small class="text-muted">
+            <small>
                 Already Have an Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
             </small>
         </div>

@@ -9,7 +9,7 @@
 </head>
 <body>
     {% include 'snippets/navbar.html' %}
-    <div class="container jumbotron mt-5">
+    <div class="container jumbotron mt-5" style="background-color:rgb(156, 204, 204);">
         <div class="container">
             <br>
             {% if user.is_authenticated %}
@@ -18,7 +18,7 @@
                     <tr>
                         <td style="width: 90%"><h2>List Kondisi Jalan</h2></td>
                         <td style="width: 10%">
-                            <a class="btn btn-secondary" href="{% url 'upload_jalanpoint' %}">
+                            <a class="btn btn-dark" href="{% url 'upload_jalanpoint' %}">
                                 Upload
                             </a>
                         </td>
@@ -30,8 +30,8 @@
                 <tbody>
                     <tr>
                         <td style="width: 90%"><h2>List Kondisi Jalan</h2></td>
-                        <td style="width: 10%">
-                            <a class="btn btn-secondary" href="#" data-toggle="popover" data-trigger="focus" data-content="You must login first!!!">
+                        <td style="width: 10%;">
+                            <a class="btn btn-dark" href="#" data-toggle="popover" data-trigger="focus" data-content="You must login first !">
                                 Upload
                             </a>
                         </td>
@@ -52,9 +52,9 @@
                 <tbody>
                 {% for JalanPoint in jalanpoint %}
                 <tr>
-                    <td>{{JalanPoint.nama_jalan}}</td>
-                    <td>{{JalanPoint.kondisi_ja}}</td>
-                    <td>{{JalanPoint.tipe_permu}}</td>
+                    <td style="text-transform: capitalize;">{{JalanPoint.nama_jalan}}</td>
+                    <td style="text-transform: capitalize;">{{JalanPoint.kondisi_ja}}</td>
+                    <td style="text-transform: capitalize;">{{JalanPoint.tipe_permu}}</td>
                     <td>
                         {% if user.is_authenticated %}
                         <div class="btn-group">

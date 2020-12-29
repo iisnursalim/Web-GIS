@@ -1,15 +1,15 @@
 {% extends "home/base.html" %}
 
 {% block Title %}
-    Log Out - Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
+    Sign Out - Sistem Informasi Sarana dan Prasarana Wilayah Kabupaten Sidrap
 {% endblock Title %}
 
 {% block Contents %}
-<div class="container jumbotron mt-5">
-    <h2 class="display-4">You have been logged out</h2>
+<div class="container jumbotron mt-5" style="background-color:rgb(156, 204, 204);">
+    <h3 class="display-8">You have been sign out !</h3>
     <div class="border-top pt-3">
         <small class="text-muted">
-            <a href="{% url 'login' %}">Log In Again</a>
+            <a class="btn btn-info" href="{% url 'login' %}">Sign In Again</a>
         </small>
     </div>
 </div>

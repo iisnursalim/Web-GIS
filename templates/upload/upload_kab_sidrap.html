@@ -19,8 +19,8 @@
 {% include 'snippets/navbar.html' %}
 
 {% if user.is_authenticated %}	
-<div class="container jumbotron mt-5">
-	<h2 class="display-4">Upload</h2>
+<div class="container jumbotron mt-5" style="background-color:rgb(156, 204, 204);">
+	<h2 class="display-8">Upload</h2>
 	<hr class="my-3">
 
 	<div class="form-group">
@@ -28,16 +28,6 @@
 			{% csrf_token %}
 			<table style="width: 100%;">
 				<tbody>
-					<tr>
-						<td>
-							<div class="field">
-								<label class="label">Provinsi</label>
-								<div class="control">
-									{% render_field form.provinsi class="form-control" placeholder="Insert Provinsi" %}
-								</div>
-							</div>
-						</td>
-					</tr>
 					<tr>
 						<td>
 							<div class="field">
@@ -54,66 +44,6 @@
 								<label class="label">Desa</label>
 								<div class="control">
 									{% render_field form.desa class="form-control" placeholder="Insert Desa" %}
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="field">
-								<label class="label">Kode 2010</label>
-								<div class="control">
-									{% render_field form.kode2010 class="form-control" placeholder="Insert Kode 2010" %}
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>
-							<div class="field">
-								<label class="label">No Provinsi</label>
-								<div class="control">
-									{% render_field form.provno class="form-control" placeholder="Insert No Provinsi" %}
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="field">
-								<label class="label">No Kabupaten</label>
-								<div class="control">
-									{% render_field form.kabkotno class="form-control" placeholder="Insert No Kabupaten" %}
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="field">
-								<label class="label">No Kecamatan</label>
-								<div class="control">
-									{% render_field form.kecno class="form-control" placeholder="Insert No Kecamatan" %}
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="field">
-								<label class="label">No Desa</label>
-								<div class="control">
-									{% render_field form.desano class="form-control" placeholder="Insert No Desa" %}
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="field">
-								<label class="label">Kabupaten</label>
-								<div class="control">
-									{% render_field form.kabkot class="form-control" placeholder="Insert Kabupaten" %}
 								</div>
 							</div>
 						</td>
